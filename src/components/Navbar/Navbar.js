@@ -10,7 +10,7 @@ function Navbar({ toggle }) {
       <Link to='/' className='pl-8'>
         <img src={logo} alt='Logo' />
       </Link>
-      <div className='px-4 cursor-pointer md:hidden' onClick={toggle}>
+      <div className='px-4 cursor-pointer xl:hidden' onClick={toggle}>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           className='h-6 w-6'
@@ -26,7 +26,7 @@ function Navbar({ toggle }) {
           />
         </svg>
       </div>
-      <div className='pr-8 md:block hidden'>
+      <div className='pr-8 xl:block hidden'>
         <Link
           className='p-3 m-4 bg-gray-600 hover:bg-gray-800 hover:text-gray-400 rounded-lg shadow-lg'
           to='/'
