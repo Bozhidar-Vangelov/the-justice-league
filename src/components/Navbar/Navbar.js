@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import logo from '../../images/logo.svg';
 import DropdownContent from './DropdownContent.js';
 import DropdownIcon from './DropdownIcon.js';
+import LinkButton from './LinkButton.js';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,54 +38,14 @@ function Navbar() {
         </Link>
         <DropdownIcon toggle={toggle} />
         <div className='pr-8 xl:block hidden'>
-          <Link
-            className='p-3 m-4 bg-gray-600 hover:bg-gray-800 hover:text-gray-400 rounded-lg shadow-lg'
-            to='/'
-          >
-            Home
-          </Link>
-          <Link
-            className='p-3 m-4 bg-gray-600 hover:bg-gray-800 hover:text-gray-400 rounded-lg shadow-lg'
-            to='/my-account'
-          >
-            My Account
-          </Link>
-          <Link
-            className='p-3 m-4 bg-gray-600 hover:bg-gray-800 hover:text-gray-400 rounded-lg shadow-lg'
-            to='/create-post'
-          >
-            Create Post
-          </Link>
-          <Link
-            className='p-3 m-4 bg-gray-600 hover:bg-gray-800 hover:text-gray-400 rounded-lg shadow-lg'
-            to='/guild-page'
-          >
-            Guild Page
-          </Link>
-          <Link
-            className='p-3 m-4 bg-gray-600 hover:bg-gray-800 hover:text-gray-400 rounded-lg shadow-lg'
-            to='/guild-experience'
-          >
-            Guild Experience
-          </Link>
-          <Link
-            className='p-3 m-4 bg-gray-600 hover:bg-gray-800 hover:text-gray-400 rounded-lg shadow-lg'
-            to='/login'
-          >
-            Login
-          </Link>
-          <Link
-            className='p-3 m-4 bg-gray-600 hover:bg-gray-800 hover:text-gray-400 rounded-lg shadow-lg'
-            to='/register'
-          >
-            Register
-          </Link>
-          <Link
-            className='p-3 m-4 bg-gray-600 hover:bg-gray-800 hover:text-gray-400 rounded-lg shadow-lg'
-            to='/'
-          >
-            Logout
-          </Link>
+          <LinkButton content='Home' to='/home' />
+          <LinkButton content='My Account' to='/my-account' />
+          <LinkButton content='Create Post' to='/create-post' />
+          <LinkButton content='Guild Page' to='/guild-page' />
+          <LinkButton content='Guild Experience' to='/guild-experience' />
+          <LinkButton content='Login' to='/login' />
+          <LinkButton content='Register' to='/register' />
+          <LinkButton content='Logout' to='/' />
         </div>
       </nav>
       <DropdownContent toggle={toggle} isOpen={isOpen} />
