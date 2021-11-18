@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-function Dropdown({ isOpen, toggle }) {
+function DropdownContent({ isOpen, toggle }) {
   return (
     <div
       className={
@@ -62,4 +62,4 @@ function Dropdown({ isOpen, toggle }) {
   );
 }
 
-export default Dropdown;
+export default DropdownContent;
