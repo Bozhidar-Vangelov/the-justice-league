@@ -38,7 +38,7 @@ function Navbar() {
         </Link>
         <DropdownIcon toggle={toggle} />
         <div className='pr-8 xl:block hidden'>
-          <LinkButton content='Home' to='/home' />
+          <LinkButton content='Home' to='/' />
           <LinkButton content='My Account' to='/my-account' />
           <LinkButton content='Create Post' to='/create-post' />
           <LinkButton content='Guild Page' to='/guild-page' />
