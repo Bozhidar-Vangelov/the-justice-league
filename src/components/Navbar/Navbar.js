@@ -30,7 +30,7 @@ function Navbar() {
   return (
     <>
       <nav
-        className='flex justify-between items-center h-16 bg-gray-700 relative shadow-sm font-serif text-gray-300 font-bold'
+        className='flex justify-between items-center h-16 bg-gray-700 relative shadow-sm font-serif text-gray-300 font-bold sticky top-0'
         role='navigation'
       >
         <Link to='/' className='pl-8'>
