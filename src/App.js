@@ -9,6 +9,7 @@ import GuildPage from './components/GuildPage.js';
 import GuildExperience from './components/GuildExperience.js';
 import Login from './components/Login.js';
 import Register from './components/Register.js';
+import Footer from './components/Footer.js';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
       </Routes>
+      <Footer />
     </>
   );
 }
