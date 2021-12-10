@@ -7,7 +7,7 @@ import MyAccount from './components/MyAccount.js';
 import CreatePost from './components/CreatePost.js';
 import GuildPage from './components/GuildPage.js';
 import GuildExperience from './components/GuildExperience.js';
-import Login from './components/Login.js';
+import Login from './components/Login/Login.js';
 import Register from './components/Register/Register.js';
 import Footer from './components/Footer.js';
 
