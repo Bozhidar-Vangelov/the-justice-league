@@ -1,14 +1,14 @@
-import styles from './registerStyles.js';
+import registerStyles from './registerStyles.js';
 
 function Register() {
   return (
-    <div className={styles.main}>
-      <div className={styles.box}>
-        <h1 className={styles.heading}>
+    <div className={registerStyles.main}>
+      <div className={registerStyles.box}>
+        <h1 className={registerStyles.heading}>
           Hello there 👋, please enter your credentials to get access account
         </h1>
         <form className='mt-6'>
-          <label htmlFor='summoner-name' className={styles.label}>
+          <label htmlFor='summoner-name' className={registerStyles.label}>
             Summoner Name
           </label>
           <input
@@ -16,10 +16,10 @@ function Register() {
             name='summoner-name'
             id='summoner-name'
             placeholder='John'
-            className={styles.input}
+            className={registerStyles.input}
             required
           />
-          <label htmlFor='email' className={styles.label}>
+          <label htmlFor='email' className={registerStyles.label}>
             E-mail
           </label>
           <input
@@ -27,10 +27,10 @@ function Register() {
             name='email'
             id='email'
             placeholder='john.doe@company.com'
-            className={styles.input}
+            className={registerStyles.input}
             required
           />
-          <label htmlFor='password' className={styles.label}>
+          <label htmlFor='password' className={registerStyles.label}>
             Password
           </label>
           <input
@@ -38,10 +38,10 @@ function Register() {
             name='password'
             id='password'
             placeholder='********'
-            className={styles.input}
+            className={registerStyles.input}
             required
           />
-          <label htmlFor='password-confirm' className={styles.label}>
+          <label htmlFor='password-confirm' className={registerStyles.label}>
             Confirm password
           </label>
           <input
@@ -49,13 +49,13 @@ function Register() {
             name='password-confirm'
             id='password-confirm'
             placeholder='********'
-            className={styles.input}
+            className={registerStyles.input}
             required
           />
-          <button type='submit' className={styles.submit}>
+          <button type='submit' className={registerStyles.submit}>
             Sign up
           </button>
-          <p className={styles.p}>Already registered?</p>
+          <p className={registerStyles.p}>Already registered?</p>
         </form>
       </div>
     </div>

@@ -1,4 +1,4 @@
-const styles = {
+const registerStyles = {
   main: ['grid', 'min-h-screen', 'place-items-center'].join(' '),
   box: [
     'w-11/12',
@@ -57,4 +57,4 @@ const styles = {
   ].join(' '),
 };
 
-export default styles;
+export default registerStyles;
