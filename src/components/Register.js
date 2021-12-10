@@ -12,14 +12,15 @@ function Register() {
         </h1>
         <form className='mt-6'>
           <label
-            htmlFor='summonerName'
+            htmlFor='summoner-name'
             className='block text-gray-300 font-serif text-lg font-bold'
           >
             Summoner Name
           </label>
           <input
             type='text'
-            name='summonerName'
+            name='summoner-name'
+            id='summoner-name'
             placeholder='John'
             className='block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner font-serif'
             required
@@ -33,6 +34,7 @@ function Register() {
           <input
             type='email'
             name='email'
+            id='email'
             placeholder='john.doe@company.com'
             className='block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner font-serif'
             required
@@ -46,6 +48,7 @@ function Register() {
           <input
             type='password'
             name='password'
+            id='password'
             placeholder='********'
             className='block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner font-serif'
             required
@@ -59,6 +62,7 @@ function Register() {
           <input
             type='password'
             name='password-confirm'
+            id='password-confirm'
             placeholder='********'
             className='block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner font-serif'
             required

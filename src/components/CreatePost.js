@@ -45,6 +45,7 @@ function CreatePost() {
           <input
             type='file'
             name='file'
+            id='file'
             className='cursor-pointer block w-full p-3 mt-2 text-gray-700 bg-gray-200 appearance-none focus:outline-none focus:bg-gray-300 focus:shadow-inner font-serif'
             required
           />
@@ -61,7 +62,7 @@ function CreatePost() {
             </div>
             <div>
               <label htmlFor='win'>Loss</label>
-              <input type='radio' name='Win' id='win' className='mx-1' />
+              <input type='radio' name='Win' id='loss' className='mx-1' />
             </div>
           </div>
           <button
