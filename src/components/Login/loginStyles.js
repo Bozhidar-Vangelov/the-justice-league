@@ -17,7 +17,8 @@ const loginStyles = {
     'font-bold',
   ].join(' '),
   input: [
-    'block w-full',
+    'block',
+    'w-full',
     'p-3',
     'mt-2',
     'text-gray-700',
