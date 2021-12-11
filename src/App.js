@@ -4,7 +4,7 @@ import './App.css';
 import Navbar from './components/Navbar/Navbar.js';
 import Home from './components/Home.js';
 import MyAccount from './components/MyAccount.js';
-import CreatePost from './components/CreatePost.js';
+import CreatePost from './components/CreatePost/CreatePost.js';
 import GuildPage from './components/GuildPage.js';
 import GuildExperience from './components/GuildExperience.js';
 import Login from './components/Login/Login.js';
