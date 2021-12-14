@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar/Navbar.js';
 import Home from './components/Home.js';
-import MyAccount from './components/MyAccount.js';
+import MyAccount from './components/MyAccount/MyAccount.js';
 import CreatePost from './components/CreatePost/CreatePost.js';
 import GuildMembers from './components/GuildMembers/GuildMembers.js';
 import GuildPosts from './components/GuildPosts/GuildPosts.js';
