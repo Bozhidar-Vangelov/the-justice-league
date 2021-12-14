@@ -11,11 +11,7 @@ function CreatePost() {
           <label htmlFor='summonerName' className={createPostStyles.label}>
             Game type
           </label>
-          <select
-            name='type'
-            id='type'
-            className={createPostStyles.input}
-          >
+          <select name='type' id='type' className={createPostStyles.input}>
             <option defaultValue>-- Select an option --</option>
             <option value='aram'>ARAM</option>
             <option value='normal'>Normal</option>
