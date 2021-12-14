@@ -4,18 +4,20 @@ const guildMembersStyles = {
   box: [
     'flex',
     'justify-between',
-    'p-12',
+    'items-center',
+    'p-8',
     'bg-gray-700',
     'rounded-lg',
     'shadow-lg',
   ].join(' '),
+  infoBox: ['border-8', 'border-double', 'border-gray-900'].join(' '),
   info: ['mt-2', 'text-gray-300', 'font-serif', 'text-lg', 'font-bold'].join(
     ' '
   ),
-  img: ['h-full', 'w-full'].join(' '),
   upVote: [
     'p-3',
     'm-2',
+    'mx-0',
     'bg-green-600',
     'hover:bg-green-800',
     'hover:text-green-400',

@@ -7,12 +7,8 @@ function GuildMembers() {
       <section className='container mx-auto flex flex-wrap'>
         <article className={guildMembersStyles.boxContainer}>
           <div className={guildMembersStyles.box}>
-            <div className='border-8 border-double border-gray-900'>
-              <img
-                src={profileIcon}
-                alt='ProfileIcon'
-                className={guildMembersStyles.img}
-              />
+            <div className={guildMembersStyles.infoBox}>
+              <img src={profileIcon} alt='ProfileIcon' />
             </div>
             <div className={guildMembersStyles.info}>
               <p>Summoner Name: Pesho</p>
