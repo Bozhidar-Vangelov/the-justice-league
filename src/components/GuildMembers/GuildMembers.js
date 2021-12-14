@@ -8,7 +8,11 @@ function GuildMembers() {
         <article className={guildMembersStyles.boxContainer}>
           <div className={guildMembersStyles.box}>
             <div className='border-8 border-double border-gray-900'>
-              <img src={profileIcon} alt='ProfileIcon' />
+              <img
+                src={profileIcon}
+                alt='ProfileIcon'
+                className={guildMembersStyles.img}
+              />
             </div>
             <div className={guildMembersStyles.info}>
               <p>Summoner Name: Pesho</p>
@@ -16,6 +20,14 @@ function GuildMembers() {
               <p>Server: EUNE</p>
               <br />
               <p>Favourite champion: Garen</p>
+              <br />
+              <div className='flex justify-between'>
+                <button className={guildMembersStyles.upVote}>UpVote</button>
+                <button className={guildMembersStyles.downVote}>
+                  DownVote
+                </button>
+              </div>
+              <p>Rating: 25</p>
             </div>
           </div>
         </article>
