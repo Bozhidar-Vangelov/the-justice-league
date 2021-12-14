@@ -14,7 +14,7 @@ function DropdownContent({ isOpen, toggle }) {
       <LinkButton content='My Account' to='/my-account' />
       <LinkButton content='Create Post' to='/create-post' />
       <LinkButton content='Guild Page' to='/guild-page' />
-      <LinkButton content='Guild Experience' to='/guild-experience' />
+      <LinkButton content='Guild Posts' to='/guild-posts' />
       <LinkButton content='Login' to='/login' />
       <LinkButton content='Register' to='/register' />
       <LinkButton content='Logout' to='/' />
