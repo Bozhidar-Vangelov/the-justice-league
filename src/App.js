@@ -6,7 +6,6 @@ import Home from './components/Home.js';
 import MyAccount from './components/MyAccount.js';
 import CreatePost from './components/CreatePost/CreatePost.js';
 import GuildMembers from './components/GuildMembers/GuildMembers.js';
-
 import GuildExperience from './components/GuildExperience.js';
 import Login from './components/Login/Login.js';
 import Register from './components/Register/Register.js';
