@@ -33,7 +33,13 @@ async function login(email, password) {
   }
 }
 
-function logout() {}
+async function logout(accessToken) {
+  await fetch(`${baseUrl}/users/logout`, {
+    headers: {
+      'X-Authorization': accessToken,
+    },
+  });
+}
 
 const authService = {
   register,

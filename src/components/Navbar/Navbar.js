@@ -36,7 +36,7 @@ function Navbar() {
     <>
       <LinkButton content='Create Post' to='/create-post' />
       <LinkButton content='My Account' to='/my-account' />
-      <LinkButton content='Logout' to='/' />
+      <LinkButton content='Logout' to='/logout' />
     </>
   );
 
