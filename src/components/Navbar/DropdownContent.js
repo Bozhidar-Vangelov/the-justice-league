@@ -1,23 +1,32 @@
+import navbarStyles from './navbarStyles.js';
 import LinkButton from './LinkButton.js';
 
-function DropdownContent({ isOpen, toggle }) {
+const userButtons = (
+  <>
+    <LinkButton content='Create Post' to='/create-post' />
+    <LinkButton content='My Account' to='/my-account' />
+    <LinkButton content='Logout' to='/' />
+  </>
+);
+
+const guestButtons = (
+  <>
+    <LinkButton content='Register' to='/register' />
+    <LinkButton content='Login' to='/login' />
+  </>
+);
+
+function DropdownContent({ isOpen, toggle, userEmail }) {
   return (
     <div
-      className={
-        isOpen
-          ? 'grid grid-rows-4 text-center items-center bg-gray-700 shadow-sm text-gray-300'
-          : 'hidden'
-      }
+      className={isOpen ? navbarStyles.dropdownContent : 'hidden'}
       onClick={toggle}
     >
-      <LinkButton content='Home' to='/home' />
-      <LinkButton content='My Account' to='/my-account' />
-      <LinkButton content='Create Post' to='/create-post' />
-      <LinkButton content='Guild Page' to='/guild-page' />
+      <LinkButton content='Home' to='/' />
       <LinkButton content='Guild Posts' to='/guild-posts' />
-      <LinkButton content='Login' to='/login' />
-      <LinkButton content='Register' to='/register' />
-      <LinkButton content='Logout' to='/' />
+      <LinkButton content='Guild Members' to='/guild-members' />
+
+      {userEmail ? userButtons : guestButtons}
     </div>
   );
 }

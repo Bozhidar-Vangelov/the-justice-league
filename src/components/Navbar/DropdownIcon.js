@@ -1,6 +1,8 @@
+import navbarStyles from './navbarStyles.js';
+
 function DropdownIcon({ toggle }) {
   return (
-    <div className='px-4 cursor-pointer xl:hidden' onClick={toggle}>
+    <div className={navbarStyles.dropdownIcon} onClick={toggle}>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         className='h-6 w-6'

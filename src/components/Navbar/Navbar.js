@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 
+import navbarStyles from './navbarStyles.js';
 import logo from '../../images/logo.svg';
 import DropdownContent from './DropdownContent.js';
 import DropdownIcon from './DropdownIcon.js';
 import LinkButton from './LinkButton.js';
+import { AuthContext } from '../../contexts/AuthContext.js';
 
 function Navbar() {
+  const { user } = useContext(AuthContext);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -27,28 +32,36 @@ function Navbar() {
     };
   });
 
+  const userButtons = (
+    <>
+      <LinkButton content='Create Post' to='/create-post' />
+      <LinkButton content='My Account' to='/my-account' />
+      <LinkButton content='Logout' to='/' />
+    </>
+  );
+
+  const guestButtons = (
+    <>
+      <LinkButton content='Register' to='/register' />
+      <LinkButton content='Login' to='/login' />
+    </>
+  );
+
   return (
     <>
-      <nav
-        className='flex justify-between items-center h-16 bg-gray-700 relative shadow-sm font-serif text-gray-300 font-bold sticky top-0'
-        role='navigation'
-      >
+      <nav className={navbarStyles.nav} role='navigation'>
         <Link to='/' className='pl-8'>
           <img src={logo} alt='Logo' />
         </Link>
         <DropdownIcon toggle={toggle} />
         <div className='pr-8 xl:block hidden'>
           <LinkButton content='Home' to='/' />
-          <LinkButton content='My Account' to='/my-account' />
-          <LinkButton content='Create Post' to='/create-post' />
-          <LinkButton content='Guild Members' to='/guild-members' />
           <LinkButton content='Guild Posts' to='/guild-posts' />
-          <LinkButton content='Login' to='/login' />
-          <LinkButton content='Register' to='/register' />
-          <LinkButton content='Logout' to='/' />
+          <LinkButton content='Guild Members' to='/guild-members' />
+          {user.email ? userButtons : guestButtons}
         </div>
       </nav>
-      <DropdownContent toggle={toggle} isOpen={isOpen} />
+      <DropdownContent toggle={toggle} isOpen={isOpen} userEmail={user.email} />
     </>
   );
 }
