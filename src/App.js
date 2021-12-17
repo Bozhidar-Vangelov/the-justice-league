@@ -10,10 +10,26 @@ import GuildPosts from './components/GuildPosts/GuildPosts.js';
 import Login from './components/Login/Login.js';
 import Register from './components/Register/Register.js';
 import Footer from './components/Footer/Footer.js';
+import useLocalStorage from './hooks/useLocalStorage.js';
+import { AuthContext } from './contexts/AuthContext.js';
+
+const initialAuthState = {
+  _id: '',
+  email: '',
+  accesToken: '',
+};
 
 function App() {
+  const [user, setUser] = useLocalStorage('user', initialAuthState);
+
+  const login = (authData) => {
+    setUser(authData);
+
+    // console.log(user);
+  };
+
   return (
-    <>
+    <AuthContext.Provider value={{ user, login }}>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -25,7 +41,7 @@ function App() {
         <Route path='/register' element={<Register />} />
       </Routes>
       <Footer />
-    </>
+    </AuthContext.Provider>
   );
 }
 
