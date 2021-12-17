@@ -16,7 +16,7 @@ import { AuthContext } from './contexts/AuthContext.js';
 const initialAuthState = {
   _id: '',
   email: '',
-  accesToken: '',
+  accessToken: '',
 };
 
 function App() {
