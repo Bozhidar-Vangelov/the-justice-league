@@ -1,13 +1,39 @@
+import { useContext } from 'react/cjs/react.development';
+import { useNavigate } from 'react-router-dom';
+
 import registerStyles from './registerStyles.js';
+import authService from '../../services/authService.js';
+import { AuthContext } from '../../contexts/AuthContext.js';
 
 function Register() {
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+
+    let formData = new FormData(e.target);
+    let summonerName = formData.get('summoner-name');
+    let email = formData.get('email');
+    let password = formData.get('password');
+
+    let registerData = await authService.register(
+      summonerName,
+      email,
+      password
+    );
+
+    login(registerData);
+    navigate('/');
+  };
+
   return (
     <div className={registerStyles.main}>
       <div className={registerStyles.box}>
         <h1 className={registerStyles.heading}>
           Hello there 👋, please enter your credentials to get access account
         </h1>
-        <form className='mt-6'>
+        <form className='mt-6' method='POST' onSubmit={onSubmitHandler}>
           <label htmlFor='summoner-name' className={registerStyles.label}>
             Summoner Name
           </label>
@@ -37,17 +63,6 @@ function Register() {
             type='password'
             name='password'
             id='password'
-            placeholder='********'
-            className={registerStyles.input}
-            required
-          />
-          <label htmlFor='password-confirm' className={registerStyles.label}>
-            Confirm password
-          </label>
-          <input
-            type='password'
-            name='password-confirm'
-            id='password-confirm'
             placeholder='********'
             className={registerStyles.input}
             required
