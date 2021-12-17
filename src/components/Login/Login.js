@@ -13,11 +13,11 @@ function Login() {
     e.preventDefault();
 
     let formData = new FormData(e.target);
-    let summonerName = formData.get('summoner-name');
+    let email = formData.get('email');
     let password = formData.get('password');
 
     try {
-      let authData = await authService.login(summonerName, password);
+      let authData = await authService.login(email, password);
       login(authData);
       navigate('/');
     } catch (err) {
@@ -32,14 +32,14 @@ function Login() {
           Hello there 👋, please enter your credentials to access your account
         </h1>
         <form className='mt-6' method='POST' onSubmit={onSubmitHandler}>
-          <label htmlFor='summoner-name' className={loginStyles.label}>
-            Summoner Name
+          <label htmlFor='email' className={loginStyles.label}>
+            Email
           </label>
           <input
             type='text'
-            name='summoner-name'
-            id='summoner-name'
-            placeholder='John'
+            name='email'
+            id='email'
+            placeholder='example@example.com'
             className={loginStyles.input}
             required
           />

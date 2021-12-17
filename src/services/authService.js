@@ -1,15 +1,15 @@
 const baseUrl = 'http://localhost:3030';
 
-function register() {}
+async function register() {}
 
-async function login(summonerName, password) {
+async function login(email, password) {
   let res = await fetch(`${baseUrl}/users/login`, {
     method: 'POST',
 
     headers: {
       'content-type': 'application/json',
     },
-    body: JSON.stringify({ email: summonerName, password }),
+    body: JSON.stringify({ email, password }),
   });
 
   let data = await res.json();
