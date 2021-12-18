@@ -15,8 +15,19 @@ async function create(postData, accessToken) {
   return post;
 }
 
+async function getAll() {
+  let res = await fetch(`${baseUrl}/data/posts`);
+
+  let posts = await res.json();
+
+  let result = Object.values(posts);
+
+  return result;
+}
+
 const postService = {
   create,
+  getAll,
 };
 
 export default postService;
