@@ -28,9 +28,9 @@ function CreatePost() {
           </label>
           <select name='type' id='type' className={createPostStyles.input}>
             <option defaultValue>-- Select an option --</option>
-            <option value='aram'>ARAM</option>
-            <option value='normal'>Normal</option>
-            <option value='ranked'>Ranked</option>
+            <option value='ARAM'>ARAM</option>
+            <option value='Normal'>Normal</option>
+            <option value='Ranked'>Ranked</option>
           </select>
           <label htmlFor='description' className={createPostStyles.label}>
             Description
