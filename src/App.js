@@ -11,6 +11,7 @@ import Login from './components/Login/Login.js';
 import Register from './components/Register/Register.js';
 import Logout from './components/Logout/Logout.js';
 import Footer from './components/Footer/Footer.js';
+import NotFound from './components/NotFound/NotFound.js';
 
 import useLocalStorage from './hooks/useLocalStorage.js';
 import { AuthContext } from './contexts/AuthContext.js';
@@ -44,6 +45,7 @@ function App() {
         <Route path='/guild-posts' element={<GuildPosts />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
     </AuthContext.Provider>
