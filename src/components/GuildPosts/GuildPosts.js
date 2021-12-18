@@ -22,7 +22,7 @@ function GuildPosts() {
 
   return (
     <div className={guildPostsStyles.main}>
-      <section className='container mx-auto flex flex-wrap, justify-center'>
+      <section className={guildPostsStyles.section}>
         {posts.map((x) => (
           <GuildPost key={x._id} post={x} />
         ))}

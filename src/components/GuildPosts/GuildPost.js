@@ -12,7 +12,7 @@ function GuildPost({ post }) {
   return (
     <article className={guildPostsStyles.boxContainer}>
       <div className={guildPostsStyles.infoBox}>
-        <img src={post.image} alt='Screenshot' />
+        <img className='h-full' src={post.image} alt='Screenshot' />
       </div>
       <div className={guildPostsStyles.box} style={style}>
         <div className={guildPostsStyles.info}>

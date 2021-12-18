@@ -1,5 +1,8 @@
 const guildPostsStyles = {
   main: ['grid', 'min-h-screen', 'place-items-center'].join(' '),
+  section: ['container', 'mx-auto', 'flex', 'flex-wrap', 'justify-center'].join(
+    ' '
+  ),
   boxContainer: ['lg:w-1/3', 'md:w-1/2', 'w-full', 'p-4'].join(' '),
   box: [
     'flex',
@@ -10,7 +13,7 @@ const guildPostsStyles = {
     'rounded-lg',
     'shadow-lg',
   ].join(' '),
-  infoBox: ['border-8', 'border-double', 'border-gray-900'].join(' '),
+  infoBox: ['h-1/3', 'border-8', 'border-double', 'border-gray-900'].join(' '),
   info: ['mt-2', 'text-gray-300', 'font-serif', 'text-lg', 'font-bold'].join(
     ' '
   ),
