@@ -12,9 +12,9 @@ function CreatePost() {
 
     let formData = new FormData(e.target);
 
-    let { type, description, file, result } = Object.fromEntries(formData);
+    let { type, description, image, result } = Object.fromEntries(formData);
 
-    postService.create({ type, description, file, result }, user.accessToken);
+    postService.create({ type, description, image, result }, user.accessToken);
   };
   return (
     <div className={createPostStyles.main}>
@@ -41,13 +41,13 @@ function CreatePost() {
             className={createPostStyles.input}
           ></textarea>
           <label htmlFor='image' className={createPostStyles.label}>
-            Image
+            Image URL
           </label>
           <input
-            type='file'
-            name='file'
-            id='file'
-            accept='image/png, image/gif, image/jpeg'
+            type='text'
+            name='image'
+            id='image'
+            placeholder='Image'
             className={createPostStyles.input}
           />
           <label htmlFor='result' className={createPostStyles.label}>
