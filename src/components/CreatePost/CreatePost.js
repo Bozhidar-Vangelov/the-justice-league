@@ -1,14 +1,29 @@
+import { useContext } from 'react/cjs/react.development';
+import { AuthContext } from '../../contexts/AuthContext.js';
+
 import createPostStyles from './createPostStyles.js';
+import postService from '../../services/postService.js';
 
 function CreatePost() {
+  const { user } = useContext(AuthContext);
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+
+    let formData = new FormData(e.target);
+
+    let { type, description, file, result } = Object.fromEntries(formData);
+
+    postService.create({ type, description, file, result }, user.accessToken);
+  };
   return (
     <div className={createPostStyles.main}>
       <div className={createPostStyles.box}>
         <h1 className={createPostStyles.heading}>
           Hello there 👋, please enter the game details
         </h1>
-        <form className='mt-6'>
-          <label htmlFor='summonerName' className={createPostStyles.label}>
+        <form className='mt-6' method='POST' onSubmit={onSubmitHandler}>
+          <label htmlFor='type' className={createPostStyles.label}>
             Game type
           </label>
           <select name='type' id='type' className={createPostStyles.input}>
@@ -17,7 +32,7 @@ function CreatePost() {
             <option value='normal'>Normal</option>
             <option value='ranked'>Ranked</option>
           </select>
-          <label htmlFor='email' className={createPostStyles.label}>
+          <label htmlFor='description' className={createPostStyles.label}>
             Description
           </label>
           <textarea
@@ -25,27 +40,39 @@ function CreatePost() {
             id='description'
             className={createPostStyles.input}
           ></textarea>
-          <label htmlFor='password' className={createPostStyles.label}>
+          <label htmlFor='image' className={createPostStyles.label}>
             Image
           </label>
           <input
             type='file'
             name='file'
             id='file'
+            accept='image/png, image/gif, image/jpeg'
             className={createPostStyles.input}
-            required
           />
-          <label htmlFor='password-confirm' className={createPostStyles.label}>
+          <label htmlFor='result' className={createPostStyles.label}>
             Game result
           </label>
           <div className={createPostStyles.div}>
             <div>
               <label htmlFor='win'>Win</label>
-              <input type='radio' name='Win' id='win' className='mx-1' />
+              <input
+                type='radio'
+                value='win'
+                name='result'
+                id='win'
+                className='mx-1'
+              />
             </div>
             <div>
-              <label htmlFor='win'>Loss</label>
-              <input type='radio' name='Win' id='loss' className='mx-1' />
+              <label htmlFor='loss'>Loss</label>
+              <input
+                type='radio'
+                value='loss'
+                name='result'
+                id='loss'
+                className='mx-1'
+              />
             </div>
           </div>
           <button type='submit' className={createPostStyles.submit}>

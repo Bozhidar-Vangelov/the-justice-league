@@ -20,7 +20,6 @@ const createPostStyles = {
     'font-bold',
   ].join(' '),
   input: [
-    'cursor-pointer',
     'block',
     'w-full',
     'p-3',
