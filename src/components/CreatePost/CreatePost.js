@@ -58,7 +58,7 @@ function CreatePost() {
               <label htmlFor='win'>Win</label>
               <input
                 type='radio'
-                value='win'
+                value='Win'
                 name='result'
                 id='win'
                 className='mx-1'
@@ -68,7 +68,7 @@ function CreatePost() {
               <label htmlFor='loss'>Loss</label>
               <input
                 type='radio'
-                value='loss'
+                value='Loss'
                 name='result'
                 id='loss'
                 className='mx-1'

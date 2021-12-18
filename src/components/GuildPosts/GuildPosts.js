@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 
 import guildPostsStyles from './guildPostsStyles.js';
-import screenshot from '../../images/5.jpg';
-import background from '../../images/7.jpg';
 import GuildPost from './GuildPost.js';
 import postService from '../../services/postService.js';
 
@@ -11,10 +9,16 @@ function GuildPosts() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    postService.getAll().then((result) => {
-      setPosts(result);
-    });
+    postService
+      .getAll()
+      .then((result) => {
+        console.log(result);
+        setPosts(result);
+      })
+      .catch((err) => console.log(err));
   }, []);
+
+  console.log(posts);
 
   return (
     <div className={guildPostsStyles.main}>

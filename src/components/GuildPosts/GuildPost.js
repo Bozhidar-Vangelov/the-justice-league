@@ -1,5 +1,4 @@
 import guildPostsStyles from './guildPostsStyles.js';
-import screenshot from '../../images/5.jpg';
 import background from '../../images/7.jpg';
 
 const style = {
@@ -10,7 +9,6 @@ const style = {
 };
 
 function GuildPost({ post }) {
-  console.log(post);
   return (
     <article className={guildPostsStyles.boxContainer}>
       <div className={guildPostsStyles.infoBox}>

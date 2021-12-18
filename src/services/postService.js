@@ -22,6 +22,8 @@ async function getAll() {
 
   let result = Object.values(posts);
 
+  console.log(posts);
+
   return result;
 }
 
