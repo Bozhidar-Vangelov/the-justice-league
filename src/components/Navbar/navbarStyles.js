@@ -23,6 +23,15 @@ const navbarStyles = {
     'shadow-sm',
     'text-gray-300',
   ].join(' '),
+  linkButton: [
+    'p-3',
+    'm-2',
+    'bg-gray-600',
+    'hover:bg-gray-800',
+    'hover:text-gray-400',
+    'rounded-lg',
+    'shadow-lg',
+  ].join(' '),
 };
 
 export default navbarStyles;

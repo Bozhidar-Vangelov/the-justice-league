@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
+import navbarStyles from './navbarStyles.js';
 
 function LinkButton({ content, to }) {
   return (
-    <Link
-      className='p-3 m-2 bg-gray-600 hover:bg-gray-800 hover:text-gray-400 rounded-lg shadow-lg'
-      to={to}
-    >
+    <Link className={navbarStyles.linkButton} to={to}>
       {content}
     </Link>
   );
