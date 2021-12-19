@@ -12,7 +12,7 @@ function GuildPost({ post }) {
   return (
     <article className={guildPostsStyles.boxContainer}>
       <div className={guildPostsStyles.infoBox}>
-        <img className='h-full' src={post.image} alt='Screenshot' />
+        <img className={guildPostsStyles.image} src={post.image} alt='Screenshot' />
       </div>
       <div className={guildPostsStyles.box} style={style}>
         <div className={guildPostsStyles.info}>
@@ -20,15 +20,19 @@ function GuildPost({ post }) {
           <br />
           <p>Game type: {post.type}</p>
           <br />
-          <p>{post.description}</p>
-          <br />
           <p>Game result: {post.result}</p>
           <br />
           <div className={guildPostsStyles.buttons}>
             <button className={guildPostsStyles.upVote}>UpVote</button>
-            <p>Rating: 25</p>
+            <p className={guildPostsStyles.rating}>Rating: 100</p>
             <button className={guildPostsStyles.downVote}>DownVote</button>
           </div>
+          <div className='text-center'>
+            <button className={guildPostsStyles.showDescription}>
+              Show description...
+            </button>
+          </div>
+          <p className='break-words'>{post.description}</p>
         </div>
       </div>
     </article>
