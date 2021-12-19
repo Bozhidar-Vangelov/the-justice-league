@@ -8,7 +8,7 @@ async function responseHandler(res) {
   let data = await res.json();
 
   if (res.ok) {
-    return data;
+    return Object.values(data);
   } else {
     throw data;
   }
