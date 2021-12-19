@@ -21,9 +21,11 @@ function GuildPosts() {
   return (
     <div className={guildPostsStyles.main}>
       <section className={guildPostsStyles.section}>
-        {posts.map((x) => (
-          <GuildPost key={x._id} post={x} />
-        ))}
+        {posts.length > 0 ? (
+          posts.map((x) => <GuildPost key={x._id} post={x} />)
+        ) : (
+          <p className={guildPostsStyles.noPosts}>No posts in database!</p>
+        )}
       </section>
     </div>
   );

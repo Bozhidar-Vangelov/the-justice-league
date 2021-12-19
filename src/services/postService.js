@@ -1,3 +1,5 @@
+import requesterService from './requesterService.js';
+
 const baseUrl = 'http://localhost:3030';
 
 async function create(postData, accessToken) {
@@ -15,14 +17,8 @@ async function create(postData, accessToken) {
   return post;
 }
 
-async function getAll() {
-  let res = await fetch(`${baseUrl}/data/posts`);
-
-  let posts = await res.json();
-
-  let result = Object.values(posts);
-
-  return result;
+function getAll() {
+  return requesterService.request(`${baseUrl}/data/posts`);
 }
 
 const postService = {
