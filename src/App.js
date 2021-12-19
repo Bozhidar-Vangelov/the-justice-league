@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
+import { AuthProvider } from './contexts/AuthContext.js';
 import Navbar from './components/Navbar/Navbar.js';
 import Home from './components/Home.js';
 import MyAccount from './components/MyAccount/MyAccount.js';
@@ -13,28 +14,9 @@ import Logout from './components/Logout/Logout.js';
 import Footer from './components/Footer/Footer.js';
 import NotFound from './components/NotFound/NotFound.js';
 
-import useLocalStorage from './hooks/useLocalStorage.js';
-import { AuthContext } from './contexts/AuthContext.js';
-
-const initialAuthState = {
-  _id: '',
-  email: '',
-  accessToken: '',
-};
-
 function App() {
-  const [user, setUser] = useLocalStorage('user', initialAuthState);
-
-  const login = (authData) => {
-    setUser(authData);
-  };
-
-  const logout = () => {
-    setUser(initialAuthState);
-  };
-
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthProvider>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
@@ -48,7 +30,7 @@ function App() {
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 }
 
