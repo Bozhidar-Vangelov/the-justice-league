@@ -1,11 +1,13 @@
-import { useContext } from 'react/cjs/react.development';
+import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext.js';
+import { useNavigate } from 'react-router-dom';
 
 import createPostStyles from './createPostStyles.js';
 import postService from '../../services/postService.js';
 
 function CreatePost() {
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -14,8 +16,13 @@ function CreatePost() {
 
     let { type, description, image, result } = Object.fromEntries(formData);
 
-    postService.create({ type, description, image, result }, user.accessToken);
+    postService
+      .create({ type, description, image, result }, user.accessToken)
+      .then(() => {
+        navigate('/guild-posts');
+      });
   };
+
   return (
     <div className={createPostStyles.main}>
       <div className={createPostStyles.box}>
