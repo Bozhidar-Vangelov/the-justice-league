@@ -1,27 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import guildPostsStyles from './guildPostsStyles.js';
-import ARAM from '../../images/ARAM.jpg';
+import howlingAbyss from '../../images/howlingAbyss.jpg';
 import wildRift from '../../images/wildRift.jpg';
-
-let backgroundStyle = {};
 
 function GuildPost({ post }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [backgroundStyle, setbackgroundStyle] = useState({});
 
   const toggle = () => {
     setIsOpen(!isOpen);
   };
 
-  if (post.type === 'ARAM') {
-    backgroundStyle = {
-      backgroundImage: `url(${ARAM})`,
-    };
-  } else if (post.type === 'Normal' || post.type === 'Ranked') {
-    backgroundStyle = {
-      backgroundImage: `url(${wildRift})`,
-    };
-  }
+  useEffect(() => {
+    if (post.type === 'ARAM') {
+      setbackgroundStyle({
+        backgroundImage: `url(${howlingAbyss})`,
+      });
+    } else {
+      setbackgroundStyle({
+        backgroundImage: `url(${wildRift})`,
+      });
+    }
+  }, [post.type]);
 
   return (
     <article className={guildPostsStyles.boxContainer}>
