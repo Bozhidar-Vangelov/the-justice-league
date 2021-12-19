@@ -1,11 +1,11 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 import authService from '../../services/authService.js';
 
 function Logout() {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout } = useAuthContext();
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -1,12 +1,11 @@
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import loginStyles from './loginStyles.js';
-import { AuthContext } from '../../contexts/AuthContext.js';
+import { useAuthContext } from '../../contexts/AuthContext.js';
 import authService from '../../services/authService.js';
 
 function Login() {
-  const { login } = useContext(AuthContext);
+  const { login } = useAuthContext();
   const navigate = useNavigate();
 
   const onSubmitHandler = async (e) => {

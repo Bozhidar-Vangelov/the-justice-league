@@ -1,12 +1,11 @@
-import { useContext } from 'react/cjs/react.development';
 import { useNavigate } from 'react-router-dom';
 
 import registerStyles from './registerStyles.js';
 import authService from '../../services/authService.js';
-import { AuthContext } from '../../contexts/AuthContext.js';
+import { useAuthContext } from '../../contexts/AuthContext.js';
 
 function Register() {
-  const { login } = useContext(AuthContext);
+  const { login } = useAuthContext();
   const navigate = useNavigate();
 
   const onSubmitHandler = async (e) => {

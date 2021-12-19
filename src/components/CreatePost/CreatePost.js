@@ -1,12 +1,11 @@
-import { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext.js';
 import { useNavigate } from 'react-router-dom';
 
 import createPostStyles from './createPostStyles.js';
 import postService from '../../services/postService.js';
+import { useAuthContext } from '../../contexts/AuthContext.js';
 
 function CreatePost() {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuthContext();
   const navigate = useNavigate();
 
   const onSubmitHandler = (e) => {

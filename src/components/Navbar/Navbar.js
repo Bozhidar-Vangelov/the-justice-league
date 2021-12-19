@@ -1,16 +1,15 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useContext } from 'react';
 
 import navbarStyles from './navbarStyles.js';
 import logo from '../../images/logo.svg';
 import DropdownContent from './DropdownContent.js';
 import DropdownIcon from './DropdownIcon.js';
 import LinkButton from './LinkButton.js';
-import { AuthContext } from '../../contexts/AuthContext.js';
+import { useAuthContext } from '../../contexts/AuthContext.js';
 
 function Navbar() {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuthContext();
 
   const [isOpen, setIsOpen] = useState(false);
 
