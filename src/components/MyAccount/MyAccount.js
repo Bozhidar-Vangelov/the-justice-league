@@ -1,6 +1,6 @@
 import myAccountStyles from './ myAccountStyles.js';
 import profileIcon from '../../images/6.png';
-import background from '../../images/7.jpg';
+import background from '../../images/ARAM.jpg';
 import guildPostsStyles from '../GuildPosts/guildPostsStyles.js';
 
 import screenshot from '../../images/5.jpg';
