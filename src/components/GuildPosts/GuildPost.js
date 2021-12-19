@@ -51,7 +51,7 @@ function GuildPost({ post }) {
               className={guildPostsStyles.showDescription}
               onClick={toggle}
             >
-              Show description...
+              {isOpen ? 'Hide description' : 'Show description...'}
             </button>
           </div>
           {isOpen ? <p className='break-words'>{post.description}</p> : ''}
