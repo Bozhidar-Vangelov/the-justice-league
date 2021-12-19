@@ -18,8 +18,6 @@ function GuildPosts() {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(posts);
-
   return (
     <div className={guildPostsStyles.main}>
       <section className={guildPostsStyles.section}>
