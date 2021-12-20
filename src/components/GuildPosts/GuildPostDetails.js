@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import guildPostsStyles from './guildPostsStyles.js';
 import howlingAbyss from '../../images/howlingAbyss.jpg';
@@ -7,28 +7,21 @@ import wildRift from '../../images/wildRift.jpg';
 import postService from '../../services/postService.js';
 import { useAuthContext } from '../../contexts/AuthContext.js';
 import ConfirmModal from '../Common/ConfirmModal.js';
+import usePostState from '../../hooks/usePostState.js';
 
 function GuildPostDetails() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [backgroundStyle, setbackgroundStyle] = useState({});
-  const [post, setPost] = useState([]);
-  const [showModal, setShowModal] = useState(false);
   const { postId } = useParams();
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [backgroundStyle, setbackgroundStyle] = useState({});
+  const [post, setPost] = usePostState(postId);
+  const [showModal, setShowModal] = useState(false);
+
   const toggle = () => {
     setIsOpen(!isOpen);
   };
-
-  useEffect(() => {
-    postService
-      .getOne(postId)
-      .then((result) => {
-        setPost(result);
-      })
-      .catch((err) => console.log(err));
-  }, [postId]);
 
   useEffect(() => {
     if (post.type === 'ARAM') {
@@ -61,9 +54,20 @@ function GuildPostDetails() {
     setShowModal(false);
   };
 
+  // const editClickHandler = (e) => {
+  //   e.preventDefault();
+  //   console.log('click');
+  // };
+
   const ownerButtons = (
     <div className='flex'>
-      <button className={guildPostsStyles.bottomButton}>Edit</button>
+      <Link
+        className={guildPostsStyles.bottomButton}
+        to={`/edit/${postId}`}
+        // onClick={editClickHandler}
+      >
+        Edit
+      </Link>
       <button
         className={guildPostsStyles.bottomButton}
         onClick={deleteClickHandler}
@@ -80,8 +84,6 @@ function GuildPostDetails() {
       <button className={guildPostsStyles.downVote}>DownVote</button>
     </div>
   );
-
-  console.log(user._id, post._ownerId);
 
   return (
     <>
