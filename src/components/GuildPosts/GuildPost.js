@@ -35,7 +35,7 @@ function GuildPost({ post }) {
       </div>
       <div className={guildPostsStyles.box} style={backgroundStyle}>
         <div className={guildPostsStyles.info}>
-          <p>Author: Pesho</p>
+          <p>Author: {post.author}</p>
           <br />
           <p>Game type: {post.type}</p>
           <br />

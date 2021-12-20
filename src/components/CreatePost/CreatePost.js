@@ -16,7 +16,10 @@ function CreatePost() {
     let { type, description, image, result } = Object.fromEntries(formData);
 
     postService
-      .create({ type, description, image, result }, user.accessToken)
+      .create(
+        { type, description, image, result, author: user.email },
+        user.accessToken
+      )
       .then(() => {
         navigate('/guild-posts');
       });
