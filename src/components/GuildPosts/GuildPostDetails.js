@@ -1,0 +1,82 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import guildPostsStyles from './guildPostsStyles.js';
+import howlingAbyss from '../../images/howlingAbyss.jpg';
+import wildRift from '../../images/wildRift.jpg';
+import postService from '../../services/postService.js';
+
+function GuildPostDetails() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [backgroundStyle, setbackgroundStyle] = useState({});
+  const [post, setPost] = useState([]);
+  const { postId } = useParams();
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
+
+  console.log(postId);
+
+  useEffect(() => {
+    postService
+      .getOne(postId)
+      .then((result) => {
+        console.log(result);
+        setPost(result);
+      })
+      .catch((err) => console.log(err));
+  }, [postId]);
+
+  useEffect(() => {
+    if (post.type === 'ARAM') {
+      setbackgroundStyle({
+        backgroundImage: `url(${howlingAbyss})`,
+      });
+    } else {
+      setbackgroundStyle({
+        backgroundImage: `url(${wildRift})`,
+      });
+    }
+  }, [post.type]);
+
+  return (
+    <div className={guildPostsStyles.main}>
+      <section className={guildPostsStyles.section}>
+        <article className={guildPostsStyles.boxContainer}>
+          <div className={guildPostsStyles.infoBox}>
+            <img
+              className={guildPostsStyles.image}
+              src={post.image}
+              alt='Screenshot'
+            />
+          </div>
+          <div className={guildPostsStyles.box} style={backgroundStyle}>
+            <div className={guildPostsStyles.info}>
+              <p>Author: {post.author}</p>
+              <br />
+              <p>Game type: {post.type}</p>
+              <br />
+              <p>Game result: {post.result}</p>
+              <br />
+              <div className={guildPostsStyles.buttons}>
+                <button className={guildPostsStyles.upVote}>UpVote</button>
+                <p className={guildPostsStyles.rating}>Rating: 100</p>
+                <button className={guildPostsStyles.downVote}>DownVote</button>
+              </div>
+              <button
+                className={guildPostsStyles.bottomButton}
+                onClick={toggle}
+              >
+                {isOpen ? 'Hide description' : 'Show description...'}
+              </button>
+              {isOpen ? <p className='break-words'>{post.description}</p> : ''}
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+  );
+}
+
+export default GuildPostDetails;

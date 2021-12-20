@@ -21,9 +21,17 @@ function getAll() {
   return requesterService.request(`${baseUrl}/data/posts`);
 }
 
+async function getOne(postId) {
+  let res = await fetch(`${baseUrl}/data/posts/${postId}`);
+  let post = res.json();
+
+  return post;
+}
+
 const postService = {
   create,
   getAll,
+  getOne,
 };
 
 export default postService;

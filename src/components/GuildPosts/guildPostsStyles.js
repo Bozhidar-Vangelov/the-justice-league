@@ -21,6 +21,7 @@ const guildPostsStyles = {
   infoBox: ['h-64', 'border-8', 'border-double', 'border-gray-900'].join(' '),
   image: ['h-full', 'w-full'].join(' '),
   info: [
+    'w-full',
     'max-w-full',
     'mt-2',
     'text-gray-300',
@@ -55,7 +56,7 @@ const guildPostsStyles = {
   bottomButton: [
     'block',
     'w-full',
-    'm-4',
+    'mt-4',
     'text-center',
     'text-gray-300',
     'font-serif',
