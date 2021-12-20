@@ -13,11 +13,12 @@ function CreatePost() {
 
     let formData = new FormData(e.target);
 
-    let { type, description, image, result } = Object.fromEntries(formData);
+    let { topic, type, description, image, result } =
+      Object.fromEntries(formData);
 
     postService
       .create(
-        { type, description, image, result, author: user.email },
+        { topic, type, description, image, result, author: user.email },
         user.accessToken
       )
       .then(() => {
@@ -32,6 +33,16 @@ function CreatePost() {
           Hello there 👋, please enter the game details
         </h1>
         <form className='mt-6' method='POST' onSubmit={onSubmitHandler}>
+          <label htmlFor='topic' className={createPostStyles.label}>
+            Topic
+          </label>
+          <input
+            type='text'
+            name='topic'
+            id='topic'
+            placeholder='Topic'
+            className={createPostStyles.input}
+          />
           <label htmlFor='type' className={createPostStyles.label}>
             Game type
           </label>

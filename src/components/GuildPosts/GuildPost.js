@@ -33,9 +33,7 @@ function GuildPost({ post }) {
         <div className={guildPostsStyles.info}>
           <p>Author: {post.author}</p>
           <br />
-          <p>
-            Topic: Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-          </p>
+          <p>Topic: {post.topic}</p>
           <Link
             className={guildPostsStyles.bottomButton}
             to={`/details/${post._id}`}
