@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import myAccountStyles from './ myAccountStyles.js';
 import profileIcon from '../../images/6.png';
 import background from '../../images/howlingAbyss.jpg';
@@ -46,30 +48,34 @@ function MyAccount() {
         <button className={myAccountStyles.button}>Show My Posts...</button>
       </div>
 
-      <section className='container mx-auto flex flex-wrap'>
+      <section className={guildPostsStyles.section}>
         <article className={guildPostsStyles.boxContainer}>
           <div className={guildPostsStyles.infoBox}>
-            <img src={screenshot} alt='Screenshot' />
+            <img
+              className={guildPostsStyles.image}
+              src='http://s01.riotpixels.net/data/02/57/025771f9-b82b-4467-9ce2-490edee9a3ca.jpg/screenshot.league-of-legends-wild-rift.1920x1080.2019-10-16.8.jpg
+              '
+              alt='Screenshot'
+            />
           </div>
           <div className={guildPostsStyles.box} style={style}>
             <div className={guildPostsStyles.info}>
               <p>Author: Pesho</p>
               <br />
-              <p>Game type: ARAM</p>
+              <p>Topic: Nema</p>
               <br />
-              <p>
-                Description: Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Unde, quasi ducimus iure minus, numquam earum quod quia
-                non pariatur quos eius. Provident, inventore esse minus quos
-                quis quidem nam tenetur.
-              </p>
-              <br />
-              <p>Game result: Win</p>
-              <br />
-              <div className={guildPostsStyles.buttons}>
-                <button className={guildPostsStyles.upVote}>UpVote</button>
-                <p>Rating: 25</p>
-                <button className={guildPostsStyles.downVote}>DownVote</button>
+              <p>Rating: 100</p>
+              <Link
+                className={guildPostsStyles.bottomButton}
+                to={`/details/$SSS`}
+              >
+                Details
+              </Link>
+              <div className='flex'>
+                <button className={guildPostsStyles.bottomButton}>Edit</button>
+                <button className={guildPostsStyles.bottomButton}>
+                  Delete
+                </button>
               </div>
             </div>
           </div>
