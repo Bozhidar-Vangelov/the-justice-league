@@ -14,6 +14,7 @@ import Logout from './components/Logout/Logout.js';
 import Footer from './components/Footer/Footer.js';
 import NotFound from './components/NotFound/NotFound.js';
 import GuildPostDetails from './components/GuildPosts/GuildPostDetails.js';
+import EditPost from './components/GuildPosts/EditPost.js';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path='/my-account' element={<MyAccount />} />
         <Route path='/logout' element={<Logout />} />
         <Route path='/guild-posts' element={<GuildPosts />} />
+        <Route path='/edit/:postId' element={<EditPost />} />
         <Route path='/details/:postId' element={<GuildPostDetails />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />

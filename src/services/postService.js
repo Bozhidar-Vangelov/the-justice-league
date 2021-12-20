@@ -41,11 +41,29 @@ async function deleteOne(postId, token) {
   return result;
 }
 
+async function updateOne(postId, postData, accessToken, author) {
+  let res = await fetch(`${baseUrl}/posts/${postId}`, {
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/json',
+      'X-Authorization': accessToken,
+    },
+    body: JSON.stringify( postData ),
+  });
+
+  let post = await res.json();
+
+  console.log(post);
+
+  return post;
+}
+
 const postService = {
   create,
   getAll,
   getOne,
   deleteOne,
+  updateOne,
 };
 
 export default postService;
