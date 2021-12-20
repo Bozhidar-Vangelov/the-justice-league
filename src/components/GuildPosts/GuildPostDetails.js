@@ -60,6 +60,29 @@ function GuildPostDetails() {
     e.preventDefault();
     setShowModal(false);
   };
+
+  const ownerButtons = (
+    <div className='flex'>
+      <button className={guildPostsStyles.bottomButton}>Edit</button>
+      <button
+        className={guildPostsStyles.bottomButton}
+        onClick={deleteClickHandler}
+      >
+        Delete
+      </button>
+    </div>
+  );
+
+  const userButtons = (
+    <div className={guildPostsStyles.buttons}>
+      <button className={guildPostsStyles.upVote}>UpVote</button>
+      <p className={guildPostsStyles.rating}>Rating: 100</p>
+      <button className={guildPostsStyles.downVote}>DownVote</button>
+    </div>
+  );
+
+  console.log(user._id, post._ownerId);
+
   return (
     <>
       <ConfirmModal
@@ -85,24 +108,9 @@ function GuildPostDetails() {
                 <br />
                 <p>Game result: {post.result}</p>
                 <br />
-                <div className={guildPostsStyles.buttons}>
-                  <button className={guildPostsStyles.upVote}>UpVote</button>
-                  <p className={guildPostsStyles.rating}>Rating: 100</p>
-                  <button className={guildPostsStyles.downVote}>
-                    DownVote
-                  </button>
-                </div>
-                <div className='flex'>
-                  <button className={guildPostsStyles.bottomButton}>
-                    Edit
-                  </button>
-                  <button
-                    className={guildPostsStyles.bottomButton}
-                    onClick={deleteClickHandler}
-                  >
-                    Delete
-                  </button>
-                </div>
+
+                {user._id &&
+                  (user._id === post._ownerId ? ownerButtons : userButtons)}
                 <button
                   className={guildPostsStyles.bottomButton}
                   onClick={toggle}
