@@ -6,6 +6,7 @@ import howlingAbyss from '../../images/howlingAbyss.jpg';
 import wildRift from '../../images/wildRift.jpg';
 import postService from '../../services/postService.js';
 import { useAuthContext } from '../../contexts/AuthContext.js';
+import ConfirmModal from '../Common/ConfirmModal.js';
 
 function GuildPostDetails() {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,50 +50,61 @@ function GuildPostDetails() {
   };
 
   return (
-    <div className={guildPostsStyles.main}>
-      <section className={guildPostsStyles.section}>
-        <article className={guildPostsStyles.boxContainer}>
-          <div className={guildPostsStyles.infoBox}>
-            <img
-              className={guildPostsStyles.image}
-              src={post.image}
-              alt='Screenshot'
-            />
-          </div>
-          <div className={guildPostsStyles.box} style={backgroundStyle}>
-            <div className={guildPostsStyles.info}>
-              <p>Author: {post.author}</p>
-              <br />
-              <p>Game type: {post.type}</p>
-              <br />
-              <p>Game result: {post.result}</p>
-              <br />
-              <div className={guildPostsStyles.buttons}>
-                <button className={guildPostsStyles.upVote}>UpVote</button>
-                <p className={guildPostsStyles.rating}>Rating: 100</p>
-                <button className={guildPostsStyles.downVote}>DownVote</button>
-              </div>
-              <div className='flex'>
-                <button className={guildPostsStyles.bottomButton}>Edit</button>
+    <>
+      <ConfirmModal />
+      <div className={guildPostsStyles.main}>
+        <section className={guildPostsStyles.section}>
+          <article className={guildPostsStyles.boxContainer}>
+            <div className={guildPostsStyles.infoBox}>
+              <img
+                className={guildPostsStyles.image}
+                src={post.image}
+                alt='Screenshot'
+              />
+            </div>
+            <div className={guildPostsStyles.box} style={backgroundStyle}>
+              <div className={guildPostsStyles.info}>
+                <p>Author: {post.author}</p>
+                <br />
+                <p>Game type: {post.type}</p>
+                <br />
+                <p>Game result: {post.result}</p>
+                <br />
+                <div className={guildPostsStyles.buttons}>
+                  <button className={guildPostsStyles.upVote}>UpVote</button>
+                  <p className={guildPostsStyles.rating}>Rating: 100</p>
+                  <button className={guildPostsStyles.downVote}>
+                    DownVote
+                  </button>
+                </div>
+                <div className='flex'>
+                  <button className={guildPostsStyles.bottomButton}>
+                    Edit
+                  </button>
+                  <button
+                    className={guildPostsStyles.bottomButton}
+                    onClick={deleteHandler}
+                  >
+                    Delete
+                  </button>
+                </div>
                 <button
                   className={guildPostsStyles.bottomButton}
-                  onClick={deleteHandler}
+                  onClick={toggle}
                 >
-                  Delete
+                  {isOpen ? 'Hide description' : 'Show description...'}
                 </button>
+                {isOpen ? (
+                  <p className='break-words'>{post.description}</p>
+                ) : (
+                  ''
+                )}
               </div>
-              <button
-                className={guildPostsStyles.bottomButton}
-                onClick={toggle}
-              >
-                {isOpen ? 'Hide description' : 'Show description...'}
-              </button>
-              {isOpen ? <p className='break-words'>{post.description}</p> : ''}
             </div>
-          </div>
-        </article>
-      </section>
-    </div>
+          </article>
+        </section>
+      </div>
+    </>
   );
 }
 
