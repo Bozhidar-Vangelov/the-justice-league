@@ -1,9 +1,9 @@
 import requesterService from './requesterService.js';
 
-const baseUrl = 'http://localhost:3030';
+const baseUrl = 'http://localhost:3030/data';
 
 async function create(postData, accessToken) {
-  let res = await fetch(`${baseUrl}/data/posts`, {
+  let res = await fetch(`${baseUrl}/posts`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -18,20 +18,34 @@ async function create(postData, accessToken) {
 }
 
 function getAll() {
-  return requesterService.request(`${baseUrl}/data/posts`);
+  return requesterService.request(`${baseUrl}/posts`);
 }
 
 async function getOne(postId) {
-  let res = await fetch(`${baseUrl}/data/posts/${postId}`);
+  let res = await fetch(`${baseUrl}/posts/${postId}`);
   let post = res.json();
 
   return post;
+}
+
+async function deleteOne(postId, token) {
+  let res = await fetch(`${baseUrl}/posts/${postId}`, {
+    method: 'DELETE',
+    headers: {
+      'X-Authorization': token,
+    },
+  });
+
+  let result = res.json();
+
+  return result;
 }
 
 const postService = {
   create,
   getAll,
   getOne,
+  deleteOne,
 };
 
 export default postService;

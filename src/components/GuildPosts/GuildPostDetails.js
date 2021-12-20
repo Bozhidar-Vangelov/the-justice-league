@@ -1,28 +1,28 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import guildPostsStyles from './guildPostsStyles.js';
 import howlingAbyss from '../../images/howlingAbyss.jpg';
 import wildRift from '../../images/wildRift.jpg';
 import postService from '../../services/postService.js';
+import { useAuthContext } from '../../contexts/AuthContext.js';
 
 function GuildPostDetails() {
   const [isOpen, setIsOpen] = useState(false);
   const [backgroundStyle, setbackgroundStyle] = useState({});
   const [post, setPost] = useState([]);
   const { postId } = useParams();
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   const toggle = () => {
     setIsOpen(!isOpen);
   };
 
-  console.log(postId);
-
   useEffect(() => {
     postService
       .getOne(postId)
       .then((result) => {
-        console.log(result);
         setPost(result);
       })
       .catch((err) => console.log(err));
@@ -39,6 +39,14 @@ function GuildPostDetails() {
       });
     }
   }, [post.type]);
+
+  const deleteHandler = (e) => {
+    e.preventDefault();
+
+    postService.deleteOne(postId, user.accessToken);
+
+    navigate('guild-posts');
+  };
 
   return (
     <div className={guildPostsStyles.main}>
@@ -66,7 +74,10 @@ function GuildPostDetails() {
               </div>
               <div className='flex'>
                 <button className={guildPostsStyles.bottomButton}>Edit</button>
-                <button className={guildPostsStyles.bottomButton}>
+                <button
+                  className={guildPostsStyles.bottomButton}
+                  onClick={deleteHandler}
+                >
                   Delete
                 </button>
               </div>
