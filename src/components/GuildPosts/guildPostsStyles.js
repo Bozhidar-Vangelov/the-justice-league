@@ -52,7 +52,9 @@ const guildPostsStyles = {
     'shadow-lg',
   ].join(' '),
   rating: ['text-center', 'p-4'].join(' '),
-  showDescription: [
+  bottomButton: [
+    'block',
+    'w-full',
     'm-4',
     'text-center',
     'text-gray-300',

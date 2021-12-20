@@ -1,16 +1,12 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import guildPostsStyles from './guildPostsStyles.js';
 import howlingAbyss from '../../images/howlingAbyss.jpg';
 import wildRift from '../../images/wildRift.jpg';
 
 function GuildPost({ post }) {
-  const [isOpen, setIsOpen] = useState(false);
   const [backgroundStyle, setbackgroundStyle] = useState({});
-
-  const toggle = () => {
-    setIsOpen(!isOpen);
-  };
 
   useEffect(() => {
     if (post.type === 'ARAM') {
@@ -37,24 +33,15 @@ function GuildPost({ post }) {
         <div className={guildPostsStyles.info}>
           <p>Author: {post.author}</p>
           <br />
-          <p>Game type: {post.type}</p>
-          <br />
-          <p>Game result: {post.result}</p>
-          <br />
-          <div className={guildPostsStyles.buttons}>
-            <button className={guildPostsStyles.upVote}>UpVote</button>
-            <p className={guildPostsStyles.rating}>Rating: 100</p>
-            <button className={guildPostsStyles.downVote}>DownVote</button>
-          </div>
-          <div className='text-center'>
-            <button
-              className={guildPostsStyles.showDescription}
-              onClick={toggle}
-            >
-              {isOpen ? 'Hide description' : 'Show description...'}
-            </button>
-          </div>
-          {isOpen ? <p className='break-words'>{post.description}</p> : ''}
+          <p>
+            Topic: Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          </p>
+          <Link
+            className={guildPostsStyles.bottomButton}
+            to={`/details/${post._id}`}
+          >
+            Details
+          </Link>
         </div>
       </div>
     </article>
