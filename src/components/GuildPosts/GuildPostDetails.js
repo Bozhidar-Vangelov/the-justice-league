@@ -64,6 +64,12 @@ function GuildPostDetails() {
                 <p className={guildPostsStyles.rating}>Rating: 100</p>
                 <button className={guildPostsStyles.downVote}>DownVote</button>
               </div>
+              <div className='flex'>
+                <button className={guildPostsStyles.bottomButton}>Edit</button>
+                <button className={guildPostsStyles.bottomButton}>
+                  Delete
+                </button>
+              </div>
               <button
                 className={guildPostsStyles.bottomButton}
                 onClick={toggle}
