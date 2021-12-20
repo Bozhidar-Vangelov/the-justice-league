@@ -5,8 +5,6 @@ import profileIcon from '../../images/6.png';
 import background from '../../images/howlingAbyss.jpg';
 import guildPostsStyles from '../GuildPosts/guildPostsStyles.js';
 
-import screenshot from '../../images/5.jpg';
-
 const style = {
   backgroundImage: `url(${background})`,
   backgroundRepeat: 'no-repat',
@@ -71,12 +69,6 @@ function MyAccount() {
               >
                 Details
               </Link>
-              <div className='flex'>
-                <button className={guildPostsStyles.bottomButton}>Edit</button>
-                <button className={guildPostsStyles.bottomButton}>
-                  Delete
-                </button>
-              </div>
             </div>
           </div>
         </article>
