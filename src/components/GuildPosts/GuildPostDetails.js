@@ -12,6 +12,7 @@ function GuildPostDetails() {
   const [isOpen, setIsOpen] = useState(false);
   const [backgroundStyle, setbackgroundStyle] = useState({});
   const [post, setPost] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const { postId } = useParams();
   const { user } = useAuthContext();
   const navigate = useNavigate();
@@ -43,15 +44,29 @@ function GuildPostDetails() {
 
   const deleteHandler = (e) => {
     e.preventDefault();
-
-    postService.deleteOne(postId, user.accessToken);
+    postService
+      .deleteOne(postId, user.accessToken)
+      .finally(() => setShowModal(false));
 
     navigate('guild-posts');
   };
 
+  const deleteClickHandler = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
+  const cancelClickHandler = (e) => {
+    e.preventDefault();
+    setShowModal(false);
+  };
   return (
     <>
-      <ConfirmModal />
+      <ConfirmModal
+        show={showModal}
+        onDelete={deleteHandler}
+        onCancel={cancelClickHandler}
+      />
       <div className={guildPostsStyles.main}>
         <section className={guildPostsStyles.section}>
           <article className={guildPostsStyles.boxContainer}>
@@ -83,7 +98,7 @@ function GuildPostDetails() {
                   </button>
                   <button
                     className={guildPostsStyles.bottomButton}
-                    onClick={deleteHandler}
+                    onClick={deleteClickHandler}
                   >
                     Delete
                   </button>

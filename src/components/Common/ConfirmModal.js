@@ -1,8 +1,11 @@
 import confirmModalStyles from './confirmModalStyles.js';
 
-function ConfirmModal() {
+function ConfirmModal({ show, onDelete, onCancel }) {
   return (
-    <div className={confirmModalStyles.main} id='modal-id'>
+    <div
+      className={`${confirmModalStyles.main} ${show ? '' : 'hidden'}`}
+      id='modal-id'
+    >
       <div className={confirmModalStyles.position}></div>
       <div className={confirmModalStyles.box}>
         <div className=''>
@@ -26,8 +29,18 @@ function ConfirmModal() {
             </p>
           </div>
           <div className={confirmModalStyles.buttonsContainer}>
-            <button className={confirmModalStyles.cancelButton}>Cancel</button>
-            <button className={confirmModalStyles.deleteButton}>Delete</button>
+            <button
+              className={confirmModalStyles.cancelButton}
+              onClick={onCancel}
+            >
+              Cancel
+            </button>
+            <button
+              className={confirmModalStyles.deleteButton}
+              onClick={onDelete}
+            >
+              Delete
+            </button>
           </div>
         </div>
       </div>
