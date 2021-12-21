@@ -9,7 +9,7 @@ async function create(postData, accessToken) {
       'content-type': 'application/json',
       'X-Authorization': accessToken,
     },
-    body: JSON.stringify({ ...postData, likes: [] }),
+    body: JSON.stringify({ ...postData, upVotes: [], downVotes: [] }),
   });
 
   let post = await res.json();
