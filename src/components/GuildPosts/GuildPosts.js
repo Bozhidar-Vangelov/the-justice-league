@@ -11,7 +11,6 @@ function GuildPosts() {
     postService
       .getAll()
       .then((result) => {
-        console.log(result);
         setPosts(result);
       })
       .catch((err) => console.log(err));

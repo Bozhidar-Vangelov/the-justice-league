@@ -73,7 +73,6 @@ function GuildPostDetails() {
 
     voteService.upVote(user._id, post._id, user.accessToken).then(() => {
       setPost((state) => ({ ...state, upVotes: [...state.upVotes, user._id] }));
-      console.log(post);
     });
   };
 
