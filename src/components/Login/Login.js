@@ -3,7 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import loginStyles from './loginStyles.js';
 import { useAuthContext } from '../../contexts/AuthContext.js';
 import authService from '../../services/authService.js';
-import { useNotificationContext } from '../../contexts/NotificationContext.js';
+import {
+  useNotificationContext,
+  types,
+} from '../../contexts/NotificationContext.js';
 
 function Login() {
   const { login } = useAuthContext();
@@ -20,11 +23,10 @@ function Login() {
     try {
       let authData = await authService.login(email, password);
       login(authData);
-      addNotification('Successfully logged in!', 'success');
+      addNotification('Successfully logged in!', types.success);
       navigate('/');
     } catch (err) {
-      addNotification('Login unsuccessful, please try again', 'danger');
-
+      addNotification('Login unsuccessful, please try again', types.danger);
       console.log(err);
     }
   };

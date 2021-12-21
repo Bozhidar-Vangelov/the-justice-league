@@ -20,8 +20,6 @@ function Notification() {
     type = notificationStyles.warning;
   }
 
-  console.log(type);
-
   return (
     <div className={type} role='alert'>
       {notification.message}
