@@ -6,7 +6,7 @@ import howlingAbyss from '../../images/howlingAbyss.jpg';
 import wildRift from '../../images/wildRift.jpg';
 import postService from '../../services/postService.js';
 import { useAuthContext } from '../../contexts/AuthContext.js';
-import ConfirmModal from '../Common/ConfirmModal.js';
+import ConfirmModal from '../Common/ConfirmModal/ConfirmModal.js';
 import usePostState from '../../hooks/usePostState.js';
 
 function GuildPostDetails() {
