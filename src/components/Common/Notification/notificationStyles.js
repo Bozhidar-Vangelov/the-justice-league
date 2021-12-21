@@ -1,6 +1,9 @@
 const notificationStyles = {
   danger: [
     'text-center',
+    'font-serif',
+    'text-lg',
+    'font-bold',
     'py-3',
     'px-5',
     'mb-4',
@@ -13,6 +16,9 @@ const notificationStyles = {
   ].join(' '),
   success: [
     'text-center',
+    'font-serif',
+    'text-lg',
+    'font-bold',
     'py-3',
     'px-5',
     'mb-4',
@@ -25,6 +31,9 @@ const notificationStyles = {
   ].join(' '),
   warning: [
     'text-center',
+    'font-serif',
+    'text-lg',
+    'font-bold',
     'py-3',
     'px-5',
     'mb-4',
@@ -37,6 +46,9 @@ const notificationStyles = {
   ].join(' '),
   info: [
     'text-center',
+    'font-serif',
+    'text-lg',
+    'font-bold',
     'py-3',
     'px-5',
     'mb-4',
