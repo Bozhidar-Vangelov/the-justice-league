@@ -28,6 +28,11 @@ async function getOne(postId) {
   return post;
 }
 
+function getMyPosts(ownerId) {
+  let query = encodeURIComponent(`_ownerId="${ownerId}"`);
+  return requesterService.request(`${baseUrl}/posts?where=${query}`);
+}
+
 async function deleteOne(postId, token) {
   let res = await fetch(`${baseUrl}/posts/${postId}`, {
     method: 'DELETE',
@@ -62,6 +67,7 @@ const postService = {
   getOne,
   deleteOne,
   updateOne,
+  getMyPosts,
 };
 
 export default postService;

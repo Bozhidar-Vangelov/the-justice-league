@@ -1,18 +1,25 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import myAccountStyles from './ myAccountStyles.js';
 import profileIcon from '../../images/6.png';
 import background from '../../images/howlingAbyss.jpg';
 import guildPostsStyles from '../GuildPosts/guildPostsStyles.js';
-
-const style = {
-  backgroundImage: `url(${background})`,
-  backgroundRepeat: 'no-repat',
-  backgroundSize: 'cover',
-  backgroundBlendMode: 'multiply',
-};
+import postService from '../../services/postService.js';
+import GuildPost from '../GuildPosts/GuildPost.js';
+import { useAuthContext } from '../../contexts/AuthContext.js';
 
 function MyAccount() {
+  const { user } = useAuthContext();
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    console.log(user._id);
+    postService
+      .getMyPosts(user._id)
+      .then((posts) => setPosts(posts))
+      .then(console.log(posts));
+  }, []);
+
   return (
     <div className={myAccountStyles.main}>
       <div className={myAccountStyles.boxContainer}>
@@ -45,33 +52,12 @@ function MyAccount() {
         </div>
         <button className={myAccountStyles.button}>Show My Posts...</button>
       </div>
-
       <section className={guildPostsStyles.section}>
-        <article className={guildPostsStyles.boxContainer}>
-          <div className={guildPostsStyles.infoBox}>
-            <img
-              className={guildPostsStyles.image}
-              src='http://s01.riotpixels.net/data/02/57/025771f9-b82b-4467-9ce2-490edee9a3ca.jpg/screenshot.league-of-legends-wild-rift.1920x1080.2019-10-16.8.jpg
-              '
-              alt='Screenshot'
-            />
-          </div>
-          <div className={guildPostsStyles.box} style={style}>
-            <div className={guildPostsStyles.info}>
-              <p>Author: Pesho</p>
-              <br />
-              <p>Topic: Nema</p>
-              <br />
-              <p>Rating: 100</p>
-              <Link
-                className={guildPostsStyles.bottomButton}
-                to={`/details/$SSS`}
-              >
-                Details
-              </Link>
-            </div>
-          </div>
-        </article>
+        {posts.length > 0 ? (
+          posts.map((x) => <GuildPost key={x._id} post={x} />)
+        ) : (
+          <p className={guildPostsStyles.noPosts}>No posts in database!</p>
+        )}
       </section>
     </div>
   );
