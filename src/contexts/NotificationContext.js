@@ -18,16 +18,13 @@ const initialNotificationState = {
 export const NotificationProvider = ({ children }) => {
   const [notification, setNotification] = useState(initialNotificationState);
 
-  const addNotification = useCallback(
-    (message, type = types.danger) => {
-      setNotification({ show: true, message, type });
+  const addNotification = useCallback((message, type = types.danger) => {
+    setNotification({ show: true, message, type });
 
-      setTimeout(() => {
-        setNotification(initialNotificationState);
-      }, 2000);
-    },
-    [initialNotificationState]
-  );
+    setTimeout(() => {
+      setNotification(initialNotificationState);
+    }, 2000);
+  }, []);
 
   return (
     <NotificationContext.Provider value={{ notification, addNotification }}>
