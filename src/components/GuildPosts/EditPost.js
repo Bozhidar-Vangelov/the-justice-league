@@ -17,16 +17,20 @@ function EditPost() {
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
 
     let formData = new FormData(e.target);
     let editedData = Object.fromEntries(formData);
 
-    postService
-      .updateOne(post._id, editedData, user.accessToken, user.email)
-      .then((res) => console.log(res))
-      .then(navigate(`/details/${post._id}`));
+    await postService.updateOne(
+      post._id,
+      editedData,
+      user.accessToken,
+      user.email
+    );
+
+    navigate(`/details/${post._id}`);
   };
 
   const onChangeHandler = (e) => {

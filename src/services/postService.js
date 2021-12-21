@@ -48,12 +48,10 @@ async function updateOne(postId, postData, accessToken, author) {
       'content-type': 'application/json',
       'X-Authorization': accessToken,
     },
-    body: JSON.stringify( postData ),
+    body: JSON.stringify({ ...postData, author }),
   });
 
-  let post = await res.json();
-
-  console.log(post);
+  let post = res.json();
 
   return post;
 }
