@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import loginStyles from './loginStyles.js';
 import { useAuthContext } from '../../contexts/AuthContext.js';
 import authService from '../../services/authService.js';
+import { useNotificationContext } from '../../contexts/NotificationContext.js';
 
 function Login() {
   const { login } = useAuthContext();
+  const { addNotification } = useNotificationContext();
   const navigate = useNavigate();
 
   const onSubmitHandler = async (e) => {
@@ -18,8 +20,11 @@ function Login() {
     try {
       let authData = await authService.login(email, password);
       login(authData);
+      addNotification('Successfully logged in!', 'success');
       navigate('/');
     } catch (err) {
+      addNotification('Login unsuccessful, please try again', 'danger');
+
       console.log(err);
     }
   };
