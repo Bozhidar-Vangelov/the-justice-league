@@ -8,10 +8,16 @@ import postService from '../../services/postService.js';
 import { useAuthContext } from '../../contexts/AuthContext.js';
 import ConfirmModal from '../Common/ConfirmModal/ConfirmModal.js';
 import usePostState from '../../hooks/usePostState.js';
+import voteService from '../../services/ratingService.js';
+import {
+  useNotificationContext,
+  types,
+} from '../../contexts/NotificationContext.js';
 
 function GuildPostDetails() {
   const { postId } = useParams();
   const { user } = useAuthContext();
+  const { addNotification } = useNotificationContext();
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -35,6 +41,13 @@ function GuildPostDetails() {
     }
   }, [post.type]);
 
+  useEffect(() => {
+    voteService.getRating(postId).then((res) => {
+      let rating = Object.values(res).map((x) => x.userId);
+      setPost((state) => ({ ...state, rating }));
+    });
+  }, [postId, setPost]);
+
   const deleteHandler = (e) => {
     e.preventDefault();
     postService
@@ -44,33 +57,26 @@ function GuildPostDetails() {
     navigate('guild-posts');
   };
 
-  const deleteClickHandler = (e) => {
-    e.preventDefault();
-    setShowModal(true);
-  };
+  const voteHandler = () => {
+    if (post.rating?.includes(user._id)) {
+      addNotification('You have already voted', types.warning);
+      return;
+    }
 
-  const cancelClickHandler = (e) => {
-    e.preventDefault();
-    setShowModal(false);
+    voteService.vote(user._id, post._id, user.accessToken).then(() => {
+      setPost((state) => ({ ...state, rating: [...state.rating, user._id] }));
+      console.log(post);
+    });
   };
-
-  // const editClickHandler = (e) => {
-  //   e.preventDefault();
-  //   console.log('click');
-  // };
 
   const ownerButtons = (
     <div className='flex'>
-      <Link
-        className={guildPostsStyles.bottomButton}
-        to={`/edit/${postId}`}
-        // onClick={editClickHandler}
-      >
+      <Link className={guildPostsStyles.bottomButton} to={`/edit/${postId}`}>
         Edit
       </Link>
       <button
         className={guildPostsStyles.bottomButton}
-        onClick={deleteClickHandler}
+        onClick={() => setShowModal(true)}
       >
         Delete
       </button>
@@ -79,8 +85,10 @@ function GuildPostDetails() {
 
   const userButtons = (
     <div className={guildPostsStyles.buttons}>
-      <button className={guildPostsStyles.upVote}>UpVote</button>
-      <p className={guildPostsStyles.rating}>Rating: 100</p>
+      <button className={guildPostsStyles.upVote} onClick={voteHandler}>
+        UpVote
+      </button>
+      <p className={guildPostsStyles.rating}>Rating: {post.rating?.length}</p>
       <button className={guildPostsStyles.downVote}>DownVote</button>
     </div>
   );
@@ -90,7 +98,7 @@ function GuildPostDetails() {
       <ConfirmModal
         show={showModal}
         onDelete={deleteHandler}
-        onCancel={cancelClickHandler}
+        onCancel={() => setShowModal(false)}
       />
       <div className={guildPostsStyles.main}>
         <section className={guildPostsStyles.section}>
