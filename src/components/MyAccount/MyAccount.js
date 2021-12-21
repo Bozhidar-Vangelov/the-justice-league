@@ -13,12 +13,8 @@ function MyAccount() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    console.log(user._id);
-    postService
-      .getMyPosts(user._id)
-      .then((posts) => setPosts(posts))
-      .then(console.log(posts));
-  }, []);
+    postService.getMyPosts(user._id).then((posts) => setPosts(posts));
+  }, [user._id]);
 
   return (
     <div className={myAccountStyles.main}>
