@@ -11,6 +11,11 @@ import { useAuthContext } from '../../contexts/AuthContext.js';
 function MyAccount() {
   const { user } = useAuthContext();
   const [posts, setPosts] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+  };
 
   useEffect(() => {
     postService.getMyPosts(user._id).then((posts) => setPosts(posts));
@@ -46,15 +51,21 @@ function MyAccount() {
             <span className='font-semibold'>Rating: </span> 25
           </p>
         </div>
-        <button className={myAccountStyles.button}>Show My Posts...</button>
+        <button className={myAccountStyles.button} onClick={toggle}>
+          {isOpen ? 'Hide My Posts' : 'Show My Posts...'}
+        </button>
       </div>
-      <section className={guildPostsStyles.section}>
-        {posts.length > 0 ? (
-          posts.map((x) => <GuildPost key={x._id} post={x} />)
-        ) : (
-          <p className={guildPostsStyles.noPosts}>No posts in database!</p>
-        )}
-      </section>
+      {isOpen ? (
+        <section className={guildPostsStyles.section}>
+          {posts.length > 0 ? (
+            posts.map((x) => <GuildPost key={x._id} post={x} />)
+          ) : (
+            <p className={guildPostsStyles.noPosts}>No posts in database!</p>
+          )}
+        </section>
+      ) : (
+        ''
+      )}
     </div>
   );
 }
