@@ -21,6 +21,15 @@ function MyAccount() {
     postService.getMyPosts(user._id).then((posts) => setPosts(posts));
   }, [user._id]);
 
+  let dateObj = new Date(user._createdOn);
+
+  let date =
+    dateObj.getDate() +
+    '/' +
+    (dateObj.getMonth() + 1) +
+    '/' +
+    dateObj.getFullYear();
+
   return (
     <div className={myAccountStyles.main}>
       <div className={myAccountStyles.boxContainer}>
@@ -35,22 +44,10 @@ function MyAccount() {
           />
         </div>
         <div className={myAccountStyles.textContainer}>
-          <h2 className={myAccountStyles.textHeading}>Pesho</h2>
-          <p className={myAccountStyles.text}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui
-            corrupti harum delectus est, animi id! Libero voluptas beatae
-            expedita itaque at, perferendis nemo delectus nostrum iure, natus ea
-            eius consequuntur. Lorem ipsum dolor sit amet, consectetur
-            adipisicing elit. Ad sed, placeat porro fuga doloribus non ut
-            consequuntur maiores eos quasi nemo id incidunt. Inventore, aliquam
-            et ipsa sed facilis labore!
-          </p>
+          <h2 className={myAccountStyles.textHeading}>{user.summonerName}</h2>
+          <p className={myAccountStyles.text}>Created On: {date}</p>
         </div>
-        <div className={myAccountStyles.ratingContainer}>
-          <p>
-            <span className='font-semibold'>Rating: </span> 25
-          </p>
-        </div>
+
         <button className={myAccountStyles.button} onClick={toggle}>
           {isOpen ? 'Hide My Posts' : 'Show My Posts...'}
         </button>
