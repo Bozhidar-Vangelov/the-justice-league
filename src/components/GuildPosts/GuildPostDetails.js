@@ -42,9 +42,14 @@ function GuildPostDetails() {
   }, [post.type]);
 
   useEffect(() => {
-    voteService.getRating(postId).then((res) => {
-      let rating = Object.values(res).map((x) => x.userId);
-      setPost((state) => ({ ...state, rating }));
+    voteService.getUpVotes(postId).then((res) => {
+      let upVotes = Object.values(res).map((x) => x.userId);
+      setPost((state) => ({ ...state, upVotes }));
+    });
+
+    voteService.getDownVotes(postId).then((res) => {
+      let downVotes = Object.values(res).map((x) => x.userId);
+      setPost((state) => ({ ...state, downVotes }));
     });
   }, [postId, setPost]);
 
@@ -57,15 +62,35 @@ function GuildPostDetails() {
     navigate('guild-posts');
   };
 
-  const voteHandler = () => {
-    if (post.rating?.includes(user._id)) {
+  const upVoteHandler = () => {
+    if (
+      post.downVotes?.includes(user._id) ||
+      post.upVotes?.includes(user._id)
+    ) {
       addNotification('You have already voted', types.warning);
       return;
     }
 
-    voteService.vote(user._id, post._id, user.accessToken).then(() => {
-      setPost((state) => ({ ...state, rating: [...state.rating, user._id] }));
+    voteService.upVote(user._id, post._id, user.accessToken).then(() => {
+      setPost((state) => ({ ...state, upVotes: [...state.upVotes, user._id] }));
       console.log(post);
+    });
+  };
+
+  const downVoteHandler = () => {
+    if (
+      post.downVotes?.includes(user._id) ||
+      post.upVotes?.includes(user._id)
+    ) {
+      addNotification('You have already voted', types.warning);
+      return;
+    }
+
+    voteService.downVote(user._id, post._id, user.accessToken).then(() => {
+      setPost((state) => ({
+        ...state,
+        downVotes: [...state.downVotes, user._id],
+      }));
     });
   };
 
@@ -85,11 +110,15 @@ function GuildPostDetails() {
 
   const userButtons = (
     <div className={guildPostsStyles.buttons}>
-      <button className={guildPostsStyles.upVote} onClick={voteHandler}>
+      <button className={guildPostsStyles.upVote} onClick={upVoteHandler}>
         UpVote
       </button>
-      <p className={guildPostsStyles.rating}>Rating: {post.rating?.length}</p>
-      <button className={guildPostsStyles.downVote}>DownVote</button>
+      <p className={guildPostsStyles.rating}>
+        Rating: {post.upVotes?.length - post.downVotes?.length}
+      </p>
+      <button className={guildPostsStyles.downVote} onClick={downVoteHandler}>
+        DownVote
+      </button>
     </div>
   );
 

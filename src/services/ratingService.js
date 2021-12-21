@@ -1,15 +1,34 @@
-const baseUrl = 'http://localhost:3030/data/rating';
+const baseUrl = 'http://localhost:3030/data/';
 
-function getRating(postId) {
+function getUpVotes(postId) {
   const query = encodeURIComponent(`postId="${postId}"`);
 
-  return fetch(`${baseUrl}/?select=userId&where=${query}`).then((res) =>
+  return fetch(`${baseUrl}upVotes/?select=userId&where=${query}`).then((res) =>
     res.json()
   );
 }
 
-function vote(userId, postId, token) {
-  return fetch(baseUrl, {
+function getDownVotes(postId) {
+  const query = encodeURIComponent(`postId="${postId}"`);
+
+  return fetch(
+    `http://localhost:3030/data/test/?select=userId&where=${query}`
+  ).then((res) => res.json());
+}
+
+function upVote(userId, postId, token) {
+  return fetch(`${baseUrl}/upVotes`, {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      'X-Authorization': token,
+    },
+    body: JSON.stringify({ userId, postId }),
+  });
+}
+
+function downVote(userId, postId, token) {
+  return fetch(`${baseUrl}/downVotes`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -20,8 +39,10 @@ function vote(userId, postId, token) {
 }
 
 const ratingService = {
-  vote,
-  getRating,
+  upVote,
+  getUpVotes,
+  downVote,
+  getDownVotes,
 };
 
 export default ratingService;
