@@ -15,8 +15,8 @@ import Logout from './components/Logout/Logout.js';
 import Footer from './components/Footer/Footer.js';
 import NotFound from './components/NotFound/NotFound.js';
 import GuildPostDetails from './components/GuildPosts/GuildPostDetails.js';
-import EditPost from './components/GuildPosts/EditPost.js';
 import Notification from './components/Common/Notification/Notification.js';
+import EditPost from './components/Edit.js/EditPost.js';
 
 function App() {
   return (
