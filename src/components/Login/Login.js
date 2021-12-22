@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -72,7 +72,9 @@ function Login() {
           <button type='submit' className={loginStyles.submit}>
             Login
           </button>
-          <p className={loginStyles.p}>Not registered yet?</p>
+          <Link to='/register'>
+            <p className={loginStyles.p}>Not registered yet?</p>
+          </Link>
         </form>
       </div>
     </div>
