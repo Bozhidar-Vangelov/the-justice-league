@@ -22,10 +22,11 @@ function Register() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(validationSchema.register) });
 
-  const onSubmitHandler = async ({ summonerName, email, password }) => {
+  const onSubmitHandler = async ({ summonerName, avatar, email, password }) => {
     try {
       let registerData = await authService.register(
         summonerName,
+        avatar,
         email,
         password
       );
@@ -61,6 +62,18 @@ function Register() {
             {...register('summonerName')}
           />
           <p className={registerStyles.error}>{errors.summonerName?.message}</p>
+          <label htmlFor='avatar' className={registerStyles.label}>
+            Avatar URL
+          </label>
+          <input
+            type='text'
+            name='avatar'
+            id='avatar'
+            placeholder='Avatar'
+            className={registerStyles.input}
+            {...register('avatar')}
+          />
+          <p className={registerStyles.error}>{errors.avatar?.message}</p>
           <label htmlFor='email' className={registerStyles.label}>
             E-mail
           </label>

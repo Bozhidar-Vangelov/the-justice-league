@@ -7,6 +7,7 @@ const register = yup
       .string()
       .required('Summoner name is required!')
       .min(6, 'Summoner name must contain at least 6 characters!'),
+    avatar: yup.string().required('Image URL is required!').url('Invalid url!'),
     email: yup
       .string()
       .required('E-mail is required!')
