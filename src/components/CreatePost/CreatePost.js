@@ -18,6 +18,7 @@ function CreatePost() {
   } = useForm({ resolver: yupResolver(validationSchema.createPost) });
 
   const onSubmitHandler = ({ topic, type, description, image, result }) => {
+    console.log(result);
     postService
       .create(
         { topic, type, description, image, result, author: user.summonerName },
@@ -96,28 +97,19 @@ function CreatePost() {
           <label htmlFor='result' className={createPostStyles.label}>
             Game result
           </label>
-          <div className={createPostStyles.div}>
-            <div>
-              <label htmlFor='win'>Win</label>
-              <input
-                type='radio'
-                value='Win'
-                name='result'
-                id='win'
-                className='mx-1'
-              />
-            </div>
-            <div>
-              <label htmlFor='loss'>Loss</label>
-              <input
-                type='radio'
-                value='Loss'
-                name='result'
-                id='loss'
-                className='mx-1'
-              />
-            </div>
-          </div>
+          <select
+            name='result'
+            id='result'
+            defaultValue='select'
+            className={createPostStyles.input}
+            {...register('result')}
+          >
+            <option value='select' disabled>
+              -- Select an option --
+            </option>
+            <option value='Victory'>Victory</option>
+            <option value='Defeat'>Defeat</option>
+          </select>
           <p className={createPostStyles.error}>{errors.result?.message}</p>
           <button type='submit' className={createPostStyles.submit}>
             Create Post
