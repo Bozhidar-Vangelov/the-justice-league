@@ -1,4 +1,12 @@
 const myAccountStyles = {
+  header: [
+    'pt-16',
+    'text-center',
+    'text-4xl',
+    'text-gray-300',
+    'font-serif',
+    'font-bold',
+  ].join(' '),
   main: ['grid', 'min-h-screen', 'place-items-center', 'font-serif'].join(' '),
   boxContainer: [
     'container',

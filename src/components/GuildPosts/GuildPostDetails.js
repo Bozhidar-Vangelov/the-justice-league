@@ -138,6 +138,7 @@ function GuildPostDetails() {
         onDelete={deleteHandler}
         onCancel={() => setShowModal(false)}
       />
+      <h1 className={guildPostsStyles.header}>Post details</h1>
       <div className={guildPostsStyles.main}>
         <section className={guildPostsStyles.section}>
           <article className={guildPostsStyles.boxContainer}>

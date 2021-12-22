@@ -24,15 +24,18 @@ function GuildPosts() {
   }, [addNotification]);
 
   return (
-    <div className={guildPostsStyles.main}>
-      <section className={guildPostsStyles.section}>
-        {posts.length > 0 ? (
-          posts.map((x) => <GuildPost key={x._id} post={x} />)
-        ) : (
-          <p className={guildPostsStyles.noPosts}>No posts in database!</p>
-        )}
-      </section>
-    </div>
+    <>
+      <h1 className={guildPostsStyles.header}>Guild Posts</h1>
+      <div className={guildPostsStyles.main}>
+        <section className={guildPostsStyles.section}>
+          {posts.length > 0 ? (
+            posts.map((x) => <GuildPost key={x._id} post={x} />)
+          ) : (
+            <p className={guildPostsStyles.noPosts}>No posts in database!</p>
+          )}
+        </section>
+      </div>
+    </>
   );
 }
 

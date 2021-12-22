@@ -35,49 +35,52 @@ function Login() {
   };
 
   return (
-    <div className={loginStyles.main}>
-      <div className={loginStyles.box}>
-        <h1 className={loginStyles.heading}>
-          Hello there 👋, please enter your credentials to access your account
-        </h1>
-        <form
-          className='mt-6'
-          method='POST'
-          onSubmit={handleSubmit(onSubmitHandler)}
-        >
-          <label htmlFor='email' className={loginStyles.label}>
-            Email
-          </label>
-          <input
-            type='text'
-            name='email'
-            id='email'
-            placeholder='example@example.com'
-            className={loginStyles.input}
-            {...register('email')}
-          />
-          <p className={loginStyles.error}>{errors.email?.message}</p>
-          <label htmlFor='password' className={loginStyles.label}>
-            Password
-          </label>
-          <input
-            type='password'
-            name='password'
-            id='password'
-            placeholder='********'
-            className={loginStyles.input}
-            {...register('password')}
-          />
-          <p className={loginStyles.error}>{errors.password?.message}</p>
-          <button type='submit' className={loginStyles.submit}>
-            Login
-          </button>
-          <Link to='/register'>
-            <p className={loginStyles.p}>Not registered yet?</p>
-          </Link>
-        </form>
+    <>
+      <h1 className={loginStyles.header}>Login</h1>
+      <div className={loginStyles.main}>
+        <div className={loginStyles.box}>
+          <h1 className={loginStyles.heading}>
+            Hello there 👋, please enter your credentials to access your account
+          </h1>
+          <form
+            className='mt-6'
+            method='POST'
+            onSubmit={handleSubmit(onSubmitHandler)}
+          >
+            <label htmlFor='email' className={loginStyles.label}>
+              Email
+            </label>
+            <input
+              type='text'
+              name='email'
+              id='email'
+              placeholder='example@example.com'
+              className={loginStyles.input}
+              {...register('email')}
+            />
+            <p className={loginStyles.error}>{errors.email?.message}</p>
+            <label htmlFor='password' className={loginStyles.label}>
+              Password
+            </label>
+            <input
+              type='password'
+              name='password'
+              id='password'
+              placeholder='********'
+              className={loginStyles.input}
+              {...register('password')}
+            />
+            <p className={loginStyles.error}>{errors.password?.message}</p>
+            <button type='submit' className={loginStyles.submit}>
+              Login
+            </button>
+            <Link to='/register'>
+              <p className={loginStyles.p}>Not registered yet?</p>
+            </Link>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

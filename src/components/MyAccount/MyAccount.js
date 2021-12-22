@@ -30,39 +30,42 @@ function MyAccount() {
     dateObj.getFullYear();
 
   return (
-    <div className={myAccountStyles.main}>
-      <div className={myAccountStyles.boxContainer}>
-        <div className={myAccountStyles.backgroundImage}>
-          <img src={background} alt='Background' />
-        </div>
-        <div className={myAccountStyles.profileImageContainer}>
-          <img
-            className={myAccountStyles.profileImage}
-            src={user.avatar}
-            alt='ProfileIcon'
-          />
-        </div>
-        <div className={myAccountStyles.textContainer}>
-          <h2 className={myAccountStyles.textHeading}>{user.summonerName}</h2>
-          <p className={myAccountStyles.text}>Created On: {date}</p>
-        </div>
+    <>
+      <h1 className={myAccountStyles.header}>My Account</h1>
+      <div className={myAccountStyles.main}>
+        <div className={myAccountStyles.boxContainer}>
+          <div className={myAccountStyles.backgroundImage}>
+            <img src={background} alt='Background' />
+          </div>
+          <div className={myAccountStyles.profileImageContainer}>
+            <img
+              className={myAccountStyles.profileImage}
+              src={user.avatar}
+              alt='ProfileIcon'
+            />
+          </div>
+          <div className={myAccountStyles.textContainer}>
+            <h2 className={myAccountStyles.textHeading}>{user.summonerName}</h2>
+            <p className={myAccountStyles.text}>Created On: {date}</p>
+          </div>
 
-        <button className={myAccountStyles.button} onClick={toggle}>
-          {isOpen ? 'Hide My Posts' : 'Show My Posts...'}
-        </button>
+          <button className={myAccountStyles.button} onClick={toggle}>
+            {isOpen ? 'Hide My Posts' : 'Show My Posts...'}
+          </button>
+        </div>
+        {isOpen ? (
+          <section className={guildPostsStyles.section}>
+            {posts.length > 0 ? (
+              posts.map((x) => <GuildPost key={x._id} post={x} />)
+            ) : (
+              <p className={guildPostsStyles.noPosts}>No posts in database!</p>
+            )}
+          </section>
+        ) : (
+          ''
+        )}
       </div>
-      {isOpen ? (
-        <section className={guildPostsStyles.section}>
-          {posts.length > 0 ? (
-            posts.map((x) => <GuildPost key={x._id} post={x} />)
-          ) : (
-            <p className={guildPostsStyles.noPosts}>No posts in database!</p>
-          )}
-        </section>
-      ) : (
-        ''
-      )}
-    </div>
+    </>
   );
 }
 

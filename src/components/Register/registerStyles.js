@@ -1,4 +1,12 @@
 const registerStyles = {
+  header: [
+    'pt-16',
+    'text-center',
+    'text-4xl',
+    'text-gray-300',
+    'font-serif',
+    'font-bold',
+  ].join(' '),
   main: ['grid', 'min-h-screen', 'place-items-center'].join(' '),
   box: [
     'w-11/12',
