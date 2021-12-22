@@ -6,9 +6,14 @@ import createPostStyles from './createPostStyles.js';
 import postService from '../../services/postService.js';
 import { useAuthContext } from '../../contexts/AuthContext.js';
 import validationSchema from '../../helpers/validationSchema.js';
+import {
+  useNotificationContext,
+  types,
+} from '../../contexts/NotificationContext.js';
 
 function CreatePost() {
   const { user } = useAuthContext();
+  const { addNotification } = useNotificationContext();
   const navigate = useNavigate();
 
   const {
@@ -18,13 +23,13 @@ function CreatePost() {
   } = useForm({ resolver: yupResolver(validationSchema.createPost) });
 
   const onSubmitHandler = ({ topic, type, description, image, result }) => {
-    console.log(result);
     postService
       .create(
         { topic, type, description, image, result, author: user.summonerName },
         user.accessToken
       )
       .then(() => {
+        addNotification('Post successfully created', types.success);
         navigate('/guild-posts');
       });
   };
