@@ -4,8 +4,12 @@ import editPostStyles from './editPostStyles.js';
 import postService from '../../services/postService.js';
 import { useAuthContext } from '../../contexts/AuthContext.js';
 import usePostState from '../../hooks/usePostState.js';
+import {
+  useNotificationContext,
+  types,
+} from '../../contexts/NotificationContext.js';
 
-const types = [
+const gameTypes = [
   { value: 'ARAM', content: 'ARAM' },
   { value: 'Normal', content: 'Normal' },
   { value: 'Ranked', content: 'Ranked' },
@@ -15,6 +19,7 @@ function EditPost() {
   const { postId } = useParams();
   const [post] = usePostState(postId);
   const { user } = useAuthContext();
+  const { addNotification } = useNotificationContext();
   const navigate = useNavigate();
 
   const onSubmitHandler = async (e) => {
@@ -30,12 +35,13 @@ function EditPost() {
       user.email
     );
 
+    addNotification('Post successfully edited!', types.success);
+
     navigate(`/details/${post._id}`);
   };
 
   return (
     <div className={editPostStyles.main}>
-      <h1>EDIT</h1>
       <div className={editPostStyles.box}>
         <h1 className={editPostStyles.heading}>
           Hello there 👋, please edit the game details
@@ -60,7 +66,7 @@ function EditPost() {
             className={editPostStyles.input}
             value={post.type}
           >
-            {types.map((x) => (
+            {gameTypes.map((x) => (
               <option key={x.value} defaultValue={x.value}>
                 {x.content}
               </option>
