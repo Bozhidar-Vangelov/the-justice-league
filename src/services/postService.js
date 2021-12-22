@@ -1,5 +1,3 @@
-import requesterService from './requesterService.js';
-
 const baseUrl = 'http://localhost:3030/data';
 
 async function create(postData, accessToken) {
@@ -39,9 +37,16 @@ async function getOne(postId) {
   return post;
 }
 
-function getMyPosts(ownerId) {
+async function getMyPosts(ownerId) {
   let query = encodeURIComponent(`_ownerId="${ownerId}"`);
-  return requesterService.request(`${baseUrl}/posts?where=${query}`);
+  let res = await fetch(`${baseUrl}/posts?where=${query}`);
+  let myPosts = await res.json();
+
+  if (res.ok) {
+    return Object.values(myPosts);
+  } else {
+    throw myPosts;
+  }
 }
 
 async function deleteOne(postId, token) {
