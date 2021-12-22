@@ -24,7 +24,6 @@ function DropdownContent({ isOpen, toggle, userEmail }) {
     >
       <LinkButton content='Home' to='/' />
       <LinkButton content='Guild Posts' to='/guild-posts' />
-      <LinkButton content='Guild Members' to='/guild-members' />
 
       {userEmail ? userButtons : guestButtons}
     </div>

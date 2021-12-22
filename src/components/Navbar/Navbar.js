@@ -56,7 +56,6 @@ function Navbar() {
         <div className='pr-8 xl:block hidden'>
           <LinkButton content='Home' to='/' />
           <LinkButton content='Guild Posts' to='/guild-posts' />
-          <LinkButton content='Guild Members' to='/guild-members' />
           {user.email ? userButtons : guestButtons}
         </div>
       </nav>

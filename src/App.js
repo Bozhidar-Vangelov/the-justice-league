@@ -7,7 +7,6 @@ import Navbar from './components/Navbar/Navbar.js';
 import Home from './components/Home.js';
 import MyAccount from './components/MyAccount/MyAccount.js';
 import CreatePost from './components/CreatePost/CreatePost.js';
-import GuildMembers from './components/GuildMembers/GuildMembers.js';
 import GuildPosts from './components/GuildPosts/GuildPosts.js';
 import Login from './components/Login/Login.js';
 import Register from './components/Register/Register.js';
@@ -28,7 +27,6 @@ function App() {
         <Notification />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/guild-members' element={<GuildMembers />} />
           <Route path='/guild-posts' element={<GuildPosts />} />
           <Route path='/details/:postId' element={<GuildPostDetails />} />
           <Route path='*' element={<NotFound />} />
