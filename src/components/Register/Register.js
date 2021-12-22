@@ -4,27 +4,8 @@ import registerStyles from './registerStyles.js';
 import authService from '../../services/authService.js';
 import { useAuthContext } from '../../contexts/AuthContext.js';
 import { useForm } from 'react-hook-form';
-
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-
-const schema = yup
-  .object()
-  .shape({
-    summonerName: yup
-      .string()
-      .required('Summoner name is required!')
-      .min(6, 'Summoner name must be at least 6 characters!'),
-    email: yup
-      .string()
-      .required('E-mail is required!')
-      .email('Invalid e-mail address!'),
-    password: yup
-      .string()
-      .required('Password is required!')
-      .min(6, 'Password nmust be at least 6 characters!'),
-  })
-  .required();
+import validationSchema from '../../helpers/validationSchema.js';
 
 function Register() {
   const { login } = useAuthContext();
@@ -35,7 +16,7 @@ function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(validationSchema),
   });
 
   const onSubmitHandler = async ({ summonerName, email, password }) => {
