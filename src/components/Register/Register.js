@@ -15,9 +15,7 @@ function Register() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
-    resolver: yupResolver(validationSchema),
-  });
+  } = useForm({ resolver: yupResolver(validationSchema.register) });
 
   const onSubmitHandler = async ({ summonerName, email, password }) => {
     let registerData = await authService.register(
