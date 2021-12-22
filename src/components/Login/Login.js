@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import loginStyles from './loginStyles.js';
 import { useAuthContext } from '../../contexts/AuthContext.js';
@@ -7,26 +9,27 @@ import {
   useNotificationContext,
   types,
 } from '../../contexts/NotificationContext.js';
+import validationSchema from '../../helpers/validationSchema.js';
 
 function Login() {
   const { login } = useAuthContext();
   const { addNotification } = useNotificationContext();
   const navigate = useNavigate();
 
-  const onSubmitHandler = async (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(validationSchema.login) });
 
-    let formData = new FormData(e.target);
-    let email = formData.get('email');
-    let password = formData.get('password');
-
+  const onSubmitHandler = async ({ email, password }) => {
     try {
       let authData = await authService.login(email, password);
       login(authData);
       addNotification('Successfully logged in!', types.success);
       navigate('/');
     } catch (err) {
-      addNotification('Login unsuccessful, please try again', types.danger);
+      addNotification('Wrong username or password!', types.danger);
       console.log(err);
     }
   };
@@ -37,7 +40,11 @@ function Login() {
         <h1 className={loginStyles.heading}>
           Hello there 👋, please enter your credentials to access your account
         </h1>
-        <form className='mt-6' method='POST' onSubmit={onSubmitHandler}>
+        <form
+          className='mt-6'
+          method='POST'
+          onSubmit={handleSubmit(onSubmitHandler)}
+        >
           <label htmlFor='email' className={loginStyles.label}>
             Email
           </label>
@@ -47,8 +54,9 @@ function Login() {
             id='email'
             placeholder='example@example.com'
             className={loginStyles.input}
-            required
+            {...register('email')}
           />
+          <p className={loginStyles.error}>{errors.email?.message}</p>
           <label htmlFor='password' className={loginStyles.label}>
             Password
           </label>
@@ -58,8 +66,9 @@ function Login() {
             id='password'
             placeholder='********'
             className={loginStyles.input}
-            required
+            {...register('password')}
           />
+          <p className={loginStyles.error}>{errors.password?.message}</p>
           <button type='submit' className={loginStyles.submit}>
             Login
           </button>
