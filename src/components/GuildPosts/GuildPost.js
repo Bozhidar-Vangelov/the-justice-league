@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import guildPostsStyles from './guildPostsStyles.js';
 import howlingAbyss from '../../images/howlingAbyss.jpg';
 import wildRift from '../../images/wildRift.jpg';
+import { useAuthContext } from '../../contexts/AuthContext.js';
 
 function GuildPost({ post }) {
   const [backgroundStyle, setbackgroundStyle] = useState({});
+  const { user } = useAuthContext();
 
   useEffect(() => {
     if (post.type === 'ARAM') {
@@ -35,12 +37,18 @@ function GuildPost({ post }) {
           <br />
           <p>Topic: {post.topic}</p>
           <br />
-          <Link
-            className={guildPostsStyles.bottomButton}
-            to={`/details/${post._id}`}
-          >
-            Details
-          </Link>
+          {user.email ? (
+            <Link
+              className={guildPostsStyles.bottomButton}
+              to={`/details/${post._id}`}
+            >
+              Details
+            </Link>
+          ) : (
+            <Link className={guildPostsStyles.bottomButton} to={`/login`}>
+              Log in to see post details
+            </Link>
+          )}
         </div>
       </div>
     </article>
