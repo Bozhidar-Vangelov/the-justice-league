@@ -8,7 +8,7 @@ import postService from '../../services/postService.js';
 import { useAuthContext } from '../../contexts/AuthContext.js';
 import ConfirmModal from '../Common/ConfirmModal/ConfirmModal.js';
 import usePostState from '../../hooks/usePostState.js';
-import voteService from '../../services/ratingService.js';
+import voteService from '../../services/voteService.js';
 import {
   useNotificationContext,
   types,
