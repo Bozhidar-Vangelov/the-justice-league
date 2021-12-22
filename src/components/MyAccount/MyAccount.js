@@ -29,8 +29,6 @@ function MyAccount() {
     '/' +
     dateObj.getFullYear();
 
-  console.log(user);
-
   return (
     <div className={myAccountStyles.main}>
       <div className={myAccountStyles.boxContainer}>
