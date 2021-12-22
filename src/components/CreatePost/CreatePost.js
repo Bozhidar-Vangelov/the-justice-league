@@ -20,7 +20,7 @@ function CreatePost() {
   const onSubmitHandler = ({ topic, type, description, image, result }) => {
     postService
       .create(
-        { topic, type, description, image, result, author: user.email },
+        { topic, type, description, image, result, author: user.summonerName },
         user.accessToken
       )
       .then(() => {
