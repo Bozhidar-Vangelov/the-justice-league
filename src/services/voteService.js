@@ -38,11 +38,11 @@ function downVote(userId, postId, token) {
   });
 }
 
-const ratingService = {
+const voteService = {
   upVote,
   getUpVotes,
   downVote,
   getDownVotes,
 };
 
-export default ratingService;
+export default voteService;
