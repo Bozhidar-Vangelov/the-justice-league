@@ -1,9 +1,9 @@
-const baseUrl = 'http://localhost:3030/data/';
+const baseUrl = 'http://localhost:3030/data';
 
 function getUpVotes(postId) {
   const query = encodeURIComponent(`postId="${postId}"`);
 
-  return fetch(`${baseUrl}upVotes/?select=userId&where=${query}`).then((res) =>
+  return fetch(`${baseUrl}/upVotes/?select=userId&where=${query}`).then((res) =>
     res.json()
   );
 }
@@ -11,9 +11,9 @@ function getUpVotes(postId) {
 function getDownVotes(postId) {
   const query = encodeURIComponent(`postId="${postId}"`);
 
-  return fetch(
-    `http://localhost:3030/data/test/?select=userId&where=${query}`
-  ).then((res) => res.json());
+  return fetch(`${baseUrl}/downVotes/?select=userId&where=${query}`).then(
+    (res) => res.json()
+  );
 }
 
 function upVote(userId, postId, token) {
