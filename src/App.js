@@ -4,7 +4,7 @@ import { AuthProvider } from './contexts/AuthContext.js';
 import { NotificationProvider } from './contexts/NotificationContext.js';
 
 import Navbar from './components/Navbar/Navbar.js';
-import Home from './components/Home.js';
+import Home from './components/Home/Home.js';
 import MyAccount from './components/MyAccount/MyAccount.js';
 import CreatePost from './components/CreatePost/CreatePost.js';
 import GuildPosts from './components/GuildPosts/GuildPosts.js';
