@@ -13,7 +13,7 @@ const types = [
 
 function EditPost() {
   const { postId } = useParams();
-  const [post, setPost] = usePostState(postId);
+  const [post] = usePostState(postId);
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
@@ -31,11 +31,6 @@ function EditPost() {
     );
 
     navigate(`/details/${post._id}`);
-  };
-
-  const onChangeHandler = (e) => {
-    e.preventDefault();
-    setPost({ ...post, type: e.target.value });
   };
 
   return (
@@ -64,7 +59,6 @@ function EditPost() {
             id='type'
             className={editPostStyles.input}
             value={post.type}
-            onChange={onChangeHandler}
           >
             {types.map((x) => (
               <option key={x.value} defaultValue={x.value}>
