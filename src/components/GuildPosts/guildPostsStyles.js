@@ -37,8 +37,10 @@ const guildPostsStyles = {
     'text-lg',
     'font-bold',
   ].join(' '),
-  buttons: ['flex', 'justify-around', 'items-center'].join(' '),
+  buttons: ['flex', 'flex-col', 'justify-around', 'items-center'].join(' '),
   upVote: [
+    'font-bold',
+    'w-full',
     'p-3',
     'pl-5',
     'pr-5',
@@ -48,8 +50,11 @@ const guildPostsStyles = {
     'hover:text-green-400',
     'rounded-lg',
     'shadow-lg',
+    'disabled:opacity-10',
   ].join(' '),
   downVote: [
+    'font-bold',
+    'w-full',
     'p-3',
     'pl-5',
     'pr-5',

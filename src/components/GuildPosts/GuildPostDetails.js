@@ -46,11 +46,6 @@ function GuildPostDetails() {
       let upVotes = Object.values(res).map((x) => x.userId);
       setPost((state) => ({ ...state, upVotes }));
     });
-
-    voteService.getDownVotes(postId).then((res) => {
-      let downVotes = Object.values(res).map((x) => x.userId);
-      setPost((state) => ({ ...state, downVotes }));
-    });
   }, [postId, setPost]);
 
   const deleteHandler = (e) => {
@@ -63,33 +58,13 @@ function GuildPostDetails() {
   };
 
   const upVoteHandler = () => {
-    if (
-      post.downVotes?.includes(user._id) ||
-      post.upVotes?.includes(user._id)
-    ) {
+    if (post.upVotes?.includes(user._id)) {
       addNotification('You have already voted', types.warning);
       return;
     }
 
     voteService.upVote(user._id, post._id, user.accessToken).then(() => {
       setPost((state) => ({ ...state, upVotes: [...state.upVotes, user._id] }));
-    });
-  };
-
-  const downVoteHandler = () => {
-    if (
-      post.downVotes?.includes(user._id) ||
-      post.upVotes?.includes(user._id)
-    ) {
-      addNotification('You have already voted', types.warning);
-      return;
-    }
-
-    voteService.downVote(user._id, post._id, user.accessToken).then(() => {
-      setPost((state) => ({
-        ...state,
-        downVotes: [...state.downVotes, user._id],
-      }));
     });
   };
 
@@ -112,12 +87,7 @@ function GuildPostDetails() {
       <button className={guildPostsStyles.upVote} onClick={upVoteHandler}>
         UpVote
       </button>
-      <p className={guildPostsStyles.rating}>
-        Rating: {post.upVotes?.length - post.downVotes?.length}
-      </p>
-      <button className={guildPostsStyles.downVote} onClick={downVoteHandler}>
-        DownVote
-      </button>
+      <p className={guildPostsStyles.rating}>Rating: {post.upVotes?.length}</p>
     </div>
   );
 
@@ -138,7 +108,7 @@ function GuildPostDetails() {
         onDelete={deleteHandler}
         onCancel={() => setShowModal(false)}
       />
-      <h1 className={guildPostsStyles.header}>Post details</h1>
+      <h1 className={guildPostsStyles.header}>Post</h1>
       <div className={guildPostsStyles.main}>
         <section className={guildPostsStyles.section}>
           <article className={guildPostsStyles.boxContainer}>
@@ -157,7 +127,6 @@ function GuildPostDetails() {
                 <br />
                 <p>Game result: {post.result}</p>
                 <br />
-
                 {user._id &&
                   (user._id === post._ownerId ? ownerButtons : userButtons)}
                 <button
