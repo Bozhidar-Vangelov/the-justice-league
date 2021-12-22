@@ -55,11 +55,11 @@ function GuildPostDetails() {
 
   const deleteHandler = (e) => {
     e.preventDefault();
-    postService
-      .deleteOne(postId, user.accessToken)
-      .finally(() => setShowModal(false));
-
-    navigate('guild-posts');
+    postService.deleteOne(postId, user.accessToken).finally(() => {
+      setShowModal(false);
+      addNotification('Post successfully deleted', types.success);
+      navigate('/guild-posts');
+    });
   };
 
   const upVoteHandler = () => {
