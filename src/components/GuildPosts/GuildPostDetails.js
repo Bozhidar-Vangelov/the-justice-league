@@ -121,7 +121,17 @@ function GuildPostDetails() {
     </div>
   );
 
-  return (
+  const noPost = (
+    <div className={guildPostsStyles.main}>
+      <section className={guildPostsStyles.section}>
+        <p className={guildPostsStyles.noPosts}>Such post does not exist!</p>
+      </section>
+    </div>
+  );
+
+  return post.code === 404 ? (
+    noPost
+  ) : (
     <>
       <ConfirmModal
         show={showModal}
