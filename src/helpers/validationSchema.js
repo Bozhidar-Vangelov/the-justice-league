@@ -6,7 +6,7 @@ const register = yup
     summonerName: yup
       .string()
       .required('Summoner name is required!')
-      .min(6, 'Summoner name must be at least 6 characters!'),
+      .min(6, 'Summoner name must contain at least 6 characters!'),
     email: yup
       .string()
       .required('E-mail is required!')
@@ -14,7 +14,7 @@ const register = yup
     password: yup
       .string()
       .required('Password is required!')
-      .min(6, 'Password nmust be at least 6 characters!'),
+      .min(6, 'Password nmust contain at least 6 characters!'),
   })
   .required();
 
@@ -28,13 +28,34 @@ const login = yup
     password: yup
       .string()
       .required('Password is required!')
-      .min(6, 'Password nmust be at least 6 characters!'),
+      .min(6, 'Password must contain at least 6 characters!'),
+  })
+  .required();
+
+const createPost = yup
+  .object()
+  .shape({
+    topic: yup
+      .string()
+      .required('Topic is required!')
+      .min(6, 'Topic must contain at least 6 characters!')
+      .max(30, 'Topic must contain maximum 30 characters!'),
+    description: yup
+      .string()
+      .required('Description is required!')
+      .min(10, 'Description must contain at least 10 characters!'),
+    type: yup
+      .string()
+      .required()
+      .matches(/[A-Z][a-z]*/gm, 'Type is required!'),
+    image: yup.string().required('Image URL is required!').url('Invalid url!'),
   })
   .required();
 
 const validationSchema = {
   register,
   login,
+  createPost,
 };
 
 export default validationSchema;

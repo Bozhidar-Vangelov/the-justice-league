@@ -60,6 +60,7 @@ const createPostStyles = {
     'focus:shadow-inner',
     'font-serif',
   ].join(' '),
+  error: ['text-red-500', 'font-semibold', 'pt-2'].join(' '),
 };
 
 export default createPostStyles;
