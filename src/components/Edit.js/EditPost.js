@@ -13,7 +13,7 @@ const types = [
 
 function EditPost() {
   const { postId } = useParams();
-  const [post, setPost] = usePostState(postId);
+  const [post] = usePostState(postId);
   const { user } = useAuthContext();
   const navigate = useNavigate();
 
@@ -33,10 +33,7 @@ function EditPost() {
     navigate(`/details/${post._id}`);
   };
 
-  const onChangeHandler = (e) => {
-    e.preventDefault();
-    setPost({ ...post, type: e.target.value });
-  };
+  console.log(post.result);
 
   return (
     <div className={editPostStyles.main}>
@@ -64,7 +61,6 @@ function EditPost() {
             id='type'
             className={editPostStyles.input}
             value={post.type}
-            onChange={onChangeHandler}
           >
             {types.map((x) => (
               <option key={x.value} defaultValue={x.value}>
@@ -95,28 +91,15 @@ function EditPost() {
           <label htmlFor='result' className={editPostStyles.label}>
             Game result
           </label>
-          <div className={editPostStyles.div}>
-            <div>
-              <label htmlFor='win'>Win</label>
-              <input
-                type='radio'
-                value='Win'
-                name='result'
-                id='win'
-                className='mx-1'
-              />
-            </div>
-            <div>
-              <label htmlFor='loss'>Loss</label>
-              <input
-                type='radio'
-                value='Loss'
-                name='result'
-                id='loss'
-                className='mx-1'
-              />
-            </div>
-          </div>
+          <select
+            name='result'
+            id='result'
+            defaultValue={post.type}
+            className={editPostStyles.input}
+          >
+            <option value='Victory'>Victory</option>
+            <option value='Defeat'>Defeat</option>
+          </select>
           <button type='submit' className={editPostStyles.submit}>
             Edit Post
           </button>
