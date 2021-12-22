@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import myAccountStyles from './ myAccountStyles.js';
-import profileIcon from '../../images/6.png';
 import background from '../../images/howlingAbyss.jpg';
 import guildPostsStyles from '../GuildPosts/guildPostsStyles.js';
 import postService from '../../services/postService.js';
@@ -30,6 +29,8 @@ function MyAccount() {
     '/' +
     dateObj.getFullYear();
 
+  console.log(user);
+
   return (
     <div className={myAccountStyles.main}>
       <div className={myAccountStyles.boxContainer}>
@@ -39,7 +40,7 @@ function MyAccount() {
         <div className={myAccountStyles.profileImageContainer}>
           <img
             className={myAccountStyles.profileImage}
-            src={profileIcon}
+            src={user.avatar}
             alt='ProfileIcon'
           />
         </div>
