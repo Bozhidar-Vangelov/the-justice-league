@@ -24,7 +24,7 @@ function ConfirmModal({ show, onDelete, onCancel }) {
             </svg>
             <h3 className={confirmModalStyles.heading}>Are you sure?</h3>
             <p className={confirmModalStyles.text}>
-              Do you really want to delete your account? This process cannot be
+              Do you really want to delete the post? This process cannot be
               undone
             </p>
           </div>
