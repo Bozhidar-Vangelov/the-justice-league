@@ -35,7 +35,6 @@ function GuildPost({ post }) {
           <br />
           <p>Topic: {post.topic}</p>
           <br />
-          <p>Rating: 100</p>
           <Link
             className={guildPostsStyles.bottomButton}
             to={`/details/${post._id}`}
