@@ -21,8 +21,15 @@ async function create(postData, accessToken) {
   }
 }
 
-function getAll() {
-  return requesterService.request(`${baseUrl}/posts`);
+async function getAll() {
+  let res = await fetch(`${baseUrl}/posts`);
+  let posts = await res.json();
+
+  if (res.ok) {
+    return Object.values(posts);
+  } else {
+    throw posts;
+  }
 }
 
 async function getOne(postId) {
