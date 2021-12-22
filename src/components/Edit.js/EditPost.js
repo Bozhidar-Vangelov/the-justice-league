@@ -35,7 +35,7 @@ function EditPost() {
       user.email
     );
 
-    addNotification('Post successfully edited!', types.success);
+    addNotification('Post successfully saved!', types.success);
 
     navigate(`/details/${post._id}`);
   };
@@ -64,7 +64,7 @@ function EditPost() {
             name='type'
             id='type'
             className={editPostStyles.input}
-            value={post.type}
+            defaultValue={post.type}
           >
             {gameTypes.map((x) => (
               <option key={x.value} defaultValue={x.value}>
@@ -105,7 +105,7 @@ function EditPost() {
             <option value='Defeat'>Defeat</option>
           </select>
           <button type='submit' className={editPostStyles.submit}>
-            Edit Post
+            Save Post
           </button>
         </form>
       </div>
