@@ -22,16 +22,31 @@ function CreatePost() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(validationSchema.createPost) });
 
-  const onSubmitHandler = ({ topic, type, description, image, result }) => {
-    postService
-      .create(
-        { topic, type, description, image, result, author: user.summonerName },
+  const onSubmitHandler = async ({
+    topic,
+    type,
+    description,
+    image,
+    result,
+  }) => {
+    try {
+      await postService.create(
+        {
+          topic,
+          type,
+          description,
+          image,
+          result,
+          author: user.summonerName,
+        },
         user.accessToken
-      )
-      .then(() => {
-        addNotification('Post successfully created', types.success);
-        navigate('/guild-posts');
-      });
+      );
+
+      addNotification('Post successfully created', types.success);
+      navigate('/guild-posts');
+    } catch (err) {
+      addNotification('Something went wrong, please try again', types.danger);
+    }
   };
 
   return (

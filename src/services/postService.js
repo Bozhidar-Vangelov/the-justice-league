@@ -14,7 +14,11 @@ async function create(postData, accessToken) {
 
   let post = await res.json();
 
-  return post;
+  if (res.ok) {
+    return post;
+  } else {
+    throw post.message;
+  }
 }
 
 function getAll() {
