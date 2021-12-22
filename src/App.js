@@ -17,6 +17,8 @@ import NotFound from './components/NotFound/NotFound.js';
 import GuildPostDetails from './components/GuildPosts/GuildPostDetails.js';
 import Notification from './components/Common/Notification/Notification.js';
 import EditPost from './components/Edit.js/EditPost.js';
+import UserRoutes from './components/Common/RoutesGuards/UserRoutes.js';
+import GuestRoutes from './components/Common/RoutesGuards/GuestRoutes.js';
 
 function App() {
   return (
@@ -26,16 +28,20 @@ function App() {
         <Notification />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/create-post' element={<CreatePost />} />
           <Route path='/guild-members' element={<GuildMembers />} />
-          <Route path='/my-account' element={<MyAccount />} />
-          <Route path='/logout' element={<Logout />} />
           <Route path='/guild-posts' element={<GuildPosts />} />
-          <Route path='/edit/:postId' element={<EditPost />} />
           <Route path='/details/:postId' element={<GuildPostDetails />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
           <Route path='*' element={<NotFound />} />
+          <Route element={<GuestRoutes />}>
+            <Route path='/register' element={<Register />} />
+            <Route path='/login' element={<Login />} />
+          </Route>
+          <Route element={<UserRoutes />}>
+            <Route path='/logout' element={<Logout />} />
+            <Route path='/create-post' element={<CreatePost />} />
+            <Route path='/my-account' element={<MyAccount />} />
+            <Route path='/edit/:postId' element={<EditPost />} />
+          </Route>
         </Routes>
         <Footer />
       </NotificationProvider>
