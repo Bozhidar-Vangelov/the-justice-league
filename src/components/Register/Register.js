@@ -3,19 +3,42 @@ import { useNavigate } from 'react-router-dom';
 import registerStyles from './registerStyles.js';
 import authService from '../../services/authService.js';
 import { useAuthContext } from '../../contexts/AuthContext.js';
+import { useForm } from 'react-hook-form';
+
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup
+  .object()
+  .shape({
+    summonerName: yup
+      .string()
+      .required('Summoner name is required!')
+      .min(6, 'Summoner name must be at least 6 characters!'),
+    email: yup
+      .string()
+      .required('E-mail is required!')
+      .email('Invalid e-mail address!'),
+    password: yup
+      .string()
+      .required('Password is required!')
+      .min(6, 'Password nmust be at least 6 characters!'),
+  })
+  .required();
 
 function Register() {
   const { login } = useAuthContext();
   const navigate = useNavigate();
 
-  const onSubmitHandler = async (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
-    let formData = new FormData(e.target);
-    let summonerName = formData.get('summoner-name');
-    let email = formData.get('email');
-    let password = formData.get('password');
-
+  const onSubmitHandler = async ({ summonerName, email, password }) => {
     let registerData = await authService.register(
       summonerName,
       email,
@@ -32,7 +55,11 @@ function Register() {
         <h1 className={registerStyles.heading}>
           Hello there 👋, please enter your credentials to get access account
         </h1>
-        <form className='mt-6' method='POST' onSubmit={onSubmitHandler}>
+        <form
+          className='mt-6'
+          method='POST'
+          onSubmit={handleSubmit(onSubmitHandler)}
+        >
           <label htmlFor='summoner-name' className={registerStyles.label}>
             Summoner Name
           </label>
@@ -42,8 +69,9 @@ function Register() {
             id='summoner-name'
             placeholder='John'
             className={registerStyles.input}
-            required
+            {...register('summonerName')}
           />
+          <p className={registerStyles.error}>{errors.summonerName?.message}</p>
           <label htmlFor='email' className={registerStyles.label}>
             E-mail
           </label>
@@ -53,8 +81,9 @@ function Register() {
             id='email'
             placeholder='john.doe@company.com'
             className={registerStyles.input}
-            required
+            {...register('email')}
           />
+          <p className={registerStyles.error}>{errors.email?.message}</p>
           <label htmlFor='password' className={registerStyles.label}>
             Password
           </label>
@@ -64,8 +93,9 @@ function Register() {
             id='password'
             placeholder='********'
             className={registerStyles.input}
-            required
+            {...register('password')}
           />
+          <p className={registerStyles.error}>{errors.password?.message}</p>
           <button type='submit' className={registerStyles.submit}>
             Sign up
           </button>

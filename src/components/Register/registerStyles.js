@@ -59,6 +59,7 @@ const registerStyles = {
     'text-lg',
     'font-bold',
   ].join(' '),
+  error: ['text-red-500', 'font-semibold', 'pt-2'].join(' '),
 };
 
 export default registerStyles;
