@@ -5,10 +5,15 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import registerStyles from './registerStyles.js';
 import authService from '../../services/authService.js';
 import { useAuthContext } from '../../contexts/AuthContext.js';
+import {
+  useNotificationContext,
+  types,
+} from '../../contexts/NotificationContext.js';
 import validationSchema from '../../helpers/validationSchema.js';
 
 function Register() {
   const { login } = useAuthContext();
+  const { addNotification } = useNotificationContext();
   const navigate = useNavigate();
 
   const {
@@ -18,14 +23,19 @@ function Register() {
   } = useForm({ resolver: yupResolver(validationSchema.register) });
 
   const onSubmitHandler = async ({ summonerName, email, password }) => {
-    let registerData = await authService.register(
-      summonerName,
-      email,
-      password
-    );
+    try {
+      let registerData = await authService.register(
+        summonerName,
+        email,
+        password
+      );
 
-    login(registerData);
-    navigate('/');
+      login(registerData);
+      navigate('/');
+    } catch (err) {
+      addNotification('E-mail already exist!', types.danger);
+      console.log(err);
+    }
   };
 
   return (

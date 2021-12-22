@@ -11,7 +11,11 @@ async function register(summonerName, email, password) {
 
   let registerData = res.json();
 
-  return registerData;
+  if (res.ok) {
+    return registerData;
+  } else {
+    throw registerData;
+  }
 }
 
 async function login(email, password) {
