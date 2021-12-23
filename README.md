@@ -1,4 +1,4 @@
-## [Live demo of the project](https://test.com/)
+## [Live demo of the project](https://the-justice-league.herokuapp.com/)
 
 Site which can be used to share posts from the famous guild "The Justice League" wild rift journeys.
 
