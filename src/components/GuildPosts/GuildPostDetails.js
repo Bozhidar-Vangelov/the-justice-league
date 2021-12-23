@@ -42,10 +42,12 @@ function GuildPostDetails() {
   }, [post.type]);
 
   useEffect(() => {
-    voteService.getUpVotes(postId).then((res) => {
-      let upVotes = Object.values(res).map((x) => x.userId);
-      setPost((state) => ({ ...state, upVotes }));
-    });
+    voteService
+      .getUpVotes(postId)
+      .then((res) => {
+        setPost((state) => ({ ...state, upVotes: res }));
+      })
+      .catch((err) => console.log(err));
   }, [postId, setPost]);
 
   const deleteHandler = (e) => {
@@ -64,6 +66,7 @@ function GuildPostDetails() {
     }
 
     voteService.upVote(user._id, post._id, user.accessToken).then(() => {
+      console.log(post);
       setPost((state) => ({ ...state, upVotes: [...state.upVotes, user._id] }));
     });
   };
@@ -87,7 +90,9 @@ function GuildPostDetails() {
       <button className={guildPostsStyles.upVote} onClick={upVoteHandler}>
         UpVote
       </button>
-      <p className={guildPostsStyles.rating}>Rating: {post.upVotes?.length}</p>
+      <p className={guildPostsStyles.rating}>
+        Rating: {post.upVotes?.length || 0}
+      </p>
     </div>
   );
 

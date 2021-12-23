@@ -32,7 +32,7 @@ function EditPost() {
       post._id,
       editedData,
       user.accessToken,
-      user.email
+      user.summonerName
     );
 
     addNotification('Post successfully saved!', types.success);
