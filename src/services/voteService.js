@@ -1,11 +1,14 @@
-const baseUrl = 'http://localhost:3030/data';
+const baseUrl = 'http://softuni-custom-server.herokuapp.com/data';
 
-function getUpVotes(postId) {
+async function getUpVotes(postId) {
   const query = encodeURIComponent(`postId="${postId}"`);
 
-  return fetch(`${baseUrl}/upVotes/?select=userId&where=${query}`).then((res) =>
-    res.json()
-  );
+  let res = await fetch(`${baseUrl}/upVotes/?select=userId&where=${query}`);
+  let json = await res.json();
+
+  let upVotes = Object.values(json).map((x) => x.userId);
+
+  return upVotes;
 }
 
 function upVote(userId, postId, token) {

@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3030/data';
+const baseUrl = 'http://softuni-custom-server.herokuapp.com/data';
 
 async function create(postData, accessToken) {
   let res = await fetch(`${baseUrl}/posts`, {
@@ -7,7 +7,7 @@ async function create(postData, accessToken) {
       'content-type': 'application/json',
       'X-Authorization': accessToken,
     },
-    body: JSON.stringify({ ...postData, upVotes: [], downVotes: [] }),
+    body: JSON.stringify({ ...postData, upVotes: [] }),
   });
 
   let post = await res.json();
@@ -32,7 +32,7 @@ async function getAll() {
 
 async function getOne(postId) {
   let res = await fetch(`${baseUrl}/posts/${postId}`);
-  let post = res.json();
+  let post = await res.json();
 
   return post;
 }
