@@ -1,4 +1,4 @@
-const baseUrl = 'http://softuni-custom-server.herokuapp.com/data';
+const baseUrl = 'http://localhost:3030';
 
 async function getUpVotes(postId) {
   const query = encodeURIComponent(`postId="${postId}"`);

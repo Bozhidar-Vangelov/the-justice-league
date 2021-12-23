@@ -1,4 +1,4 @@
-const baseUrl = 'http://softuni-custom-server.herokuapp.com/data';
+const baseUrl = 'http://localhost:3030/data';
 
 async function create(postData, accessToken) {
   let res = await fetch(`${baseUrl}/posts`, {

@@ -1,4 +1,4 @@
-const baseUrl = 'http://softuni-custom-server.herokuapp.com';
+const baseUrl = 'http://localhost:3030';
 
 async function register(summonerName, avatar, email, password) {
   let res = await fetch(`${baseUrl}/users/register`, {
